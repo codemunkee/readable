@@ -5,9 +5,12 @@ import {
   REMOVE_POST,
 } from '../actions';
 
-const initialPostState = {};
+const initialPostState = [
+  {id: 0, name: 'foo'},
+  {id: 1, name: 'bar'},
+];
 
-function post(state = initialPostState, action) {
+function posts(state = initialPostState, action) {
   const { id, name } = action
 
   switch (action.type) {
@@ -26,5 +29,5 @@ function post(state = initialPostState, action) {
 }
 
 export default combineReducers({
-  post,
+  posts,
 })

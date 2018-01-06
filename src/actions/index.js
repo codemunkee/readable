@@ -8,7 +8,7 @@ export function addPost({ id, name }) {
   };
 }
 
-export function removeFromCalendar ({ id }) {
+export function removePost({ id }) {
   return {
     type: REMOVE_POST,
   };
