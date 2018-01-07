@@ -11,9 +11,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img className="App-logo" src={IconR} alt="icon" />
-          <div className="App-title">
+          <span className="App-title">
             Readable
-          </div>
+          </span>
+          <span className="App-menu">
+            submit | sort
+          </span>
         </header>
         <div className="App-body">
           <PostList />

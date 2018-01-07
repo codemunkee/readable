@@ -12,13 +12,18 @@ export class Post extends Component {
     const { id, title } = this.state;
     return (
       <div className="Post">
-        <span className="Post-number">{id}. <img src={IconArrowUp}
-                         className="Post-logo"
-                         alt="arrow up" />
-        </span>
-        <span>
-          {title}
-        </span>
+        <div className="Post-line-one">
+          <span className="Post-number">{id}. <img src={IconArrowUp}
+                           className="Post-logo"
+                           alt="arrow up" />
+          </span>
+          <span>
+            {title}
+          </span>
+        </div>
+        <div className="Post-line-two">
+          <span>0 votes by poster 2 minutes ago | remove | discuss</span>
+        </div>
       </div>
     )
   }

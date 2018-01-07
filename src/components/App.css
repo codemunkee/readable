@@ -21,6 +21,13 @@
   vertical-align: middle;
 }
 
+.App-menu {
+  display: inline-block;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  vertical-align: middle;
+}
+
 .App-body {
   background-color: #f6f6ef;
   margin: auto;
