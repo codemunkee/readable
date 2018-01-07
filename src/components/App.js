@@ -1,27 +1,45 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom'
 import './App.css';
-import IconR from './IconR.svg';
+import AppTitle from './AppTitle';
 import PostList from './PostList';
+import PostSubmit from './PostSubmit';
 
 class App extends Component {
 
   render() {
-
     return (
       <div className="App">
-        <header className="App-header">
-          <img className="App-logo" src={IconR} alt="icon" />
-          <span className="App-title">
-            Readable
-          </span>
-          <span className="App-menu">
-            submit | sort
-          </span>
-        </header>
-        <div className="App-body">
-          <PostList />
-        </div>
+
+        {/* Comment */}
+
+        <Route path="/" exact render={() => (
+          <div className="App-main">
+            <header className="App-header">
+              <AppTitle name="Readable"/>
+              <span className="App-menu">
+                <Link to="/submit">submit</Link> | sort
+              </span>
+            </header>
+            <div className="App-body">
+              <PostList/>
+            </div>
+          </div>
+        )} />
+
+        <Route path="/submit" exact render={() => (
+          <div className="App-submit">
+            <header className="App-header">
+              <AppTitle name="Submit"/>
+            </header>
+            <div className="App-body">
+              <PostSubmit/>
+            </div>
+          </div>
+        )} />
+
       </div>
+
     );
   }
 }

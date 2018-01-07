@@ -24,7 +24,7 @@
 .App-menu {
   display: inline-block;
   margin-left: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   vertical-align: middle;
 }
 
@@ -32,5 +32,10 @@
   background-color: #f6f6ef;
   margin: auto;
   width: 85%;
-  height: 1000px;
+  padding-bottom: 20px;
+}
+
+.App a, .App a:visited {
+  color: black;
+  text-decoration: none;
 }

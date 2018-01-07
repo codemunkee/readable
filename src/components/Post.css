@@ -24,3 +24,47 @@
   margin-left: 38px;
   color: #828282;
 }
+
+.PostSubmit {
+  font-style: Verdana, Geneva, sans-serif;
+  color: #828282;
+}
+
+.PostSubmit fieldset {
+  border: 0;
+}
+
+.PostSubmit label {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 16px;
+  width: 30px;
+}
+
+.PostSubmit input {
+  height: 15px;
+  width: 375px;
+}
+
+.PostSubmit p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 30px;
+}
+
+.PostSubmit-text {
+  display: flex;
+}
+
+.PostSubmit-text label {
+  margin-top: 24px;
+}
+
+.PostSubmit-text textarea {
+  height: 60px;
+  width: 375px;
+}
+
+.PostSubmit button {
+  margin-left: 40px;
+}
