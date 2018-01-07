@@ -4,13 +4,10 @@ import './Post.css';
 
 export class Post extends Component {
   state = {
-    id: this.props.post.id,
-    number: this.props.post.number,
-    title: this.props.post.title,
+    ...this.props.post
   }
 
   render() {
-    console.log(this.state)
     const { id, number, title } = this.state;
     return (
       <div className="Post">
