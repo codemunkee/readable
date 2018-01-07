@@ -4,16 +4,18 @@ import './Post.css';
 
 export class Post extends Component {
   state = {
-    id: this.props.id,
-    title: this.props.title,
+    id: this.props.post.id,
+    number: this.props.post.number,
+    title: this.props.post.title,
   }
 
   render() {
-    const { id, title } = this.state;
+    console.log(this.state)
+    const { id, number, title } = this.state;
     return (
       <div className="Post">
         <div className="Post-line-one">
-          <span className="Post-number">{id}. <img src={IconArrowUp}
+          <span className="Post-number">{number}. <img src={IconArrowUp}
                            className="Post-logo"
                            alt="arrow up" />
           </span>

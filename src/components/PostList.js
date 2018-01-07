@@ -6,17 +6,27 @@ import { Post } from './Post';
 
 class PostList extends Component {
   state = {
-    posts: this.props.posts
+    posts: addPostNumber(this.props.posts)
   }
 
   render() {
     const { posts } = this.state;
     return (
       <div className="PostList">
-        {posts.map(post => <Post key={post.id} id={post.id} title={post.title} />) }
+        {posts.map(post => <Post key={post.id} post={post} />) }
       </div>
     )
   }
+}
+
+function addPostNumber(posts) {
+  let count = 0;
+  const withNumbers = posts.map(post => {
+    post.number = count += 1;
+    return post;
+  });
+
+  return withNumbers;
 }
 
 function mapStateToProps (state) {
