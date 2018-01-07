@@ -1,0 +1,16 @@
+.Post {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11pt;
+  padding: 4px;
+  width: 100%;
+}
+
+.Post-number {
+  color: #828282;
+}
+
+.Post-logo {
+  height: 14px;
+  width: 14px;
+  padding-right: 5px;
+}

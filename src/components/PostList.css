@@ -1,8 +1,4 @@
 .PostList {
-  display: block;
-}
-
-.PostList p {
-  margin-top: 0px;
-  padding-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }

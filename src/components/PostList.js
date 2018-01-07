@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { addPost, removePost } from '../actions'
+import { connect } from 'react-redux';
+import { addPost, removePost } from '../actions';
 import './PostList.css';
+import { Post } from './Post';
 
 class PostList extends Component {
   state = {
@@ -12,7 +13,7 @@ class PostList extends Component {
     const { posts } = this.state;
     return (
       <div className="PostList">
-        {posts.map(post => <p key={post.id}>{post.name}</p>)}
+        {posts.map(post => <Post key={post.id} id={post.id} title={post.title} />) }
       </div>
     )
   }
