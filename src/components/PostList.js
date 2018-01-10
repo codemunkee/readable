@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addPost, removePost } from '../actions';
+import { removePost } from '../actions';
 import './PostList.css';
 import { Post } from './Post';
 
@@ -13,7 +13,7 @@ class PostList extends Component {
     const { posts } = this.state;
     return (
       <div className="PostList">
-        {posts.map(post => <Post key={post.id} post={post} />) }
+        { posts.map(post => <Post key={post.id} post={post} />) }
       </div>
     )
   }
@@ -35,7 +35,6 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    addPost: (data) => dispatch(addPost(data)),
     removePost: (data) => dispatch(removePost(data))
   }
 }

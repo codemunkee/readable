@@ -15,10 +15,7 @@ function posts(state = initialPostState, action) {
 
   switch (action.type) {
     case ADD_POST:
-      return {
-        ...state,
-        [id]: { 'title': title }
-      }
+      return state.map(post => post).concat({id, title});
     case REMOVE_POST:
       return {
         ...state,

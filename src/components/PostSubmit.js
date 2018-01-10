@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addPost } from '../actions';
+
 import './Post.css';
 
-export default class PostSubmit extends Component {
+class PostSubmit extends Component {
 
   state = {
     title: '',
@@ -15,7 +18,7 @@ export default class PostSubmit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+    this.props.addPost({'title': this.state.title})
   }
 
   render() {
@@ -52,3 +55,18 @@ export default class PostSubmit extends Component {
     )
   }
 }
+
+function mapStateToProps (state) {
+  return {'posts': state.posts };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    addPost: (data) => dispatch(addPost(data)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostSubmit)

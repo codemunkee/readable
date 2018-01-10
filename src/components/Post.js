@@ -8,7 +8,7 @@ export class Post extends Component {
   }
 
   render() {
-    const { id, number, title } = this.state;
+    const { number, title } = this.state;
     return (
       <div className="Post">
         <div className="Post-line-one">

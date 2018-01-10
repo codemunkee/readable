@@ -1,10 +1,11 @@
 export const ADD_POST = 'ADD_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 
-export function addPost({ id, name }) {
+export function addPost({ title }) {
   return {
     type: ADD_POST,
-    name
+    id: Math.floor(Math.random() * 20),
+    title
   };
 }
 
