@@ -12,5 +12,6 @@ export function addPost({ title }) {
 export function removePost({ id }) {
   return {
     type: REMOVE_POST,
+    id
   };
 }

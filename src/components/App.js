@@ -11,8 +11,6 @@ class App extends Component {
     return (
       <div className="App">
 
-        {/* Comment */}
-
         <Route path="/" exact render={() => (
           <div className="App-main">
             <header className="App-header">

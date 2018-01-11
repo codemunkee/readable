@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removePost } from '../actions';
 import './PostList.css';
-import { Post } from './Post';
+import Post from './Post';
 
 class PostList extends Component {
   state = {
@@ -33,13 +32,6 @@ function mapStateToProps (state) {
   return {'posts': state.posts };
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    removePost: (data) => dispatch(removePost(data))
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
 )(PostList)

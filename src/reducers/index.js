@@ -17,9 +17,7 @@ function posts(state = initialPostState, action) {
     case ADD_POST:
       return state.map(post => post).concat({id, title});
     case REMOVE_POST:
-      return {
-        ...state,
-      }
+      return state.filter(post => post.id !== id);
     default :
       return state
   }
