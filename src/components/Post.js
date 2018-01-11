@@ -6,16 +6,13 @@ import './Post.css';
 
 
 class Post extends Component {
-  state = {
-    ...this.props.post
-  }
 
   handleRemove = data => {
-    this.props.removePost(this.state);
+    this.props.removePost(this.props.post.id);
   }
 
   render() {
-    const { number, title } = this.state;
+    const { number, title } = this.props.post;
     return (
       <div className="Post">
         <div className="Post-line-one">

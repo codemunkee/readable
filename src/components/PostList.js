@@ -4,12 +4,9 @@ import './PostList.css';
 import Post from './Post';
 
 class PostList extends Component {
-  state = {
-    posts: addPostNumber(this.props.posts)
-  }
 
   render() {
-    const { posts } = this.state;
+    const { posts } = this.props;
     return (
       <div className="PostList">
         { posts.map(post => <Post key={post.id} post={post} />) }
@@ -19,17 +16,18 @@ class PostList extends Component {
 }
 
 function addPostNumber(posts) {
-  let count = 0;
-  const withNumbers = posts.map(post => {
-    post.number = count += 1;
-    return post;
-  });
-
-  return withNumbers;
+  // we add a property with a sort number to each post as well as their id,
+  // the former is just a convenience thing, the latter is because the posts
+  // are returned in an array (to ensure order)
+  let count = 1;
+  return Object.keys(posts).map(postId => {
+    const newPost = { ...posts[postId], 'id': postId, 'number': count++}
+    return newPost;
+  })
 }
 
-function mapStateToProps (state) {
-  return {'posts': state.posts };
+function mapStateToProps ({posts}) {
+  return {'posts': addPostNumber(posts) };
 }
 
 export default connect(
