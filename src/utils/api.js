@@ -1,10 +1,25 @@
-const API_ID = process.env.REACT_APP_API_ID
-const APP_KEY = process.env.REACT_APP_APP_KEY
 
-export function fetchRecipes (food = '') {
-  food = food.trim()
+const initGET = { method: 'GET',
+                  headers: new Headers({'Authorization': 'Hi'}),
+                  mode: 'cors',
+                  cache: 'default' };
 
-  return fetch(`https://api.edamam.com/search?q=${food}&app_id=${API_ID}&app_key=${APP_KEY}`)
-    .then((res) => res.json())
-    .then(({ hits }) => hits.map(({ recipe }) => recipe))
+function fetchPosts() {
+  return fetch('http://localhost:3001/posts', initGET)
+    .then(resp => resp.json())
+    .then(resp => {
+      // convert our response of an array of objects to an object of objects,
+      // the latter is the preferred way of describing state in redux
+      const reduxified = resp.reduce((accumulator, item) => {
+        accumulator[item.id] = item;
+        return accumulator
+      }, {})
+      return {'posts': reduxified};
+    })
+    .catch(error => {
+      console.log('Error: Unable to retrieve posts.', error);
+      return {};
+    });
 }
+
+  export default fetchPosts;
