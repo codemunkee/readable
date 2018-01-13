@@ -4,7 +4,7 @@ const initGET = { method: 'GET',
                   mode: 'cors',
                   cache: 'default' };
 
-function fetchPosts() {
+export function fetchPosts() {
   return fetch('http://localhost:3001/posts', initGET)
     .then(resp => resp.json())
     .then(resp => {
@@ -14,12 +14,10 @@ function fetchPosts() {
         accumulator[item.id] = item;
         return accumulator
       }, {})
-      return {'posts': reduxified};
+      return reduxified;
     })
     .catch(error => {
       console.log('Error: Unable to retrieve posts.', error);
       return {};
     });
 }
-
-  export default fetchPosts;

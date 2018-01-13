@@ -3,24 +3,38 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom';
 import './index.css';
 import App from './components/App';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './reducers'
-import fetchPosts from './utils/api';
+import reducer from './reducers';
+import thunk from 'redux-thunk';
+import { fetchPosts } from './actions';
 
-fetchPosts().then(initPostState => {
-  const store = createStore(
-    reducer,
-    initPostState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+const logger = store => next => action => {
+  console.group(action.type);
+  console.info('dispatching', action);
+  let result = next(action);
+  console.log('next state', store.getState());
+  console.groupEnd(action.type);
+  return result;
+}
 
-  ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <App/>
-      </BrowserRouter>
-    </Provider>, document.getElementById('root'));
-  registerServiceWorker();
-});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(
+  reducer,
+  composeEnhancers(
+    applyMiddleware(thunk, logger),
+  )
+);
+
+// init our redux store
+store.dispatch(fetchPosts());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  </Provider>, document.getElementById('root'));
+registerServiceWorker();

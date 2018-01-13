@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './PostList.css';
 import Post from './Post';
+import { fetchPosts } from '../actions';
+
 
 class PostList extends Component {
 
@@ -30,6 +32,13 @@ function mapStateToProps ({posts}) {
   return {'posts': addPostNumber(posts) };
 }
 
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchPosts: () => dispatch(fetchPosts()),
+  }
+}
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(PostList)
