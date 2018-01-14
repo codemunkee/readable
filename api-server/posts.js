@@ -7,7 +7,7 @@ const id1 = utils.generateUUID();
 const id2 = utils.generateUUID();
 
 const defaultData = {
-  id1: {
+  [id1]: {
     id: id1,
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
@@ -18,7 +18,7 @@ const defaultData = {
     deleted: false,
     commentCount: 2
   },
-  id2: {
+  [id2]: {
     id: id2,
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
