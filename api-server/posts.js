@@ -1,10 +1,14 @@
+const utils = require('./utils')
 const clone = require('clone')
 
 let db = {}
 
+const id1 = utils.generateUUID();
+const id2 = utils.generateUUID();
+
 const defaultData = {
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
+  id1: {
+    id: id1,
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
     body: 'Everyone says so after all.',
@@ -14,8 +18,8 @@ const defaultData = {
     deleted: false,
     commentCount: 2
   },
-  "6ni6ok3ym7mf1p33lnez": {
-    id: '6ni6ok3ym7mf1p33lnez',
+  id2: {
+    id: id2,
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
     body: 'Just kidding. It takes more than 10 minutes to learn technology.',
@@ -68,9 +72,12 @@ function add (token, post) {
   return new Promise((res) => {
     let posts = getData(token)
 
-    posts[post.id] = {
-      id: post.id,
-      timestamp: post.timestamp,
+    const uuid = utils.generateUUID();
+    const now = Date.now() / 1000;
+
+    posts[uuid] = {
+      id: uuid,
+      timestamp: now,
       title: post.title,
       body: post.body,
       author: post.author,
@@ -80,7 +87,7 @@ function add (token, post) {
       commentCount: 0
     }
 
-    res(posts[post.id])
+    res(posts[uuid])
   })
 }
 
