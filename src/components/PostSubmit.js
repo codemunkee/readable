@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addPost } from '../actions';
+import { postPost } from '../actions';
 import './Post.css';
 
 class PostSubmit extends Component {
@@ -61,7 +61,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    addPost: (data) => dispatch(addPost(data)),
+    addPost: (data) => dispatch(postPost(data)),
   }
 }
 

@@ -3,10 +3,7 @@ export const ADD_POST = 'ADD_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
-export const receivePosts = posts => ({
-  type: RECEIVE_POSTS,
-  posts
-});
+// Retrieve all posts
 
 export const fetchPosts = () => dispatch => {
   APIUtil
@@ -14,10 +11,23 @@ export const fetchPosts = () => dispatch => {
     .then(posts => dispatch(receivePosts(posts)))
 }
 
-export function addPost({ title }) {
+export const receivePosts = posts => ({
+  type: RECEIVE_POSTS,
+  posts
+});
+
+// Add a new post
+
+export const postPost = postData => dispatch => {
+  APIUtil
+    .postPost(postData)
+    .then(apiResp => dispatch(addPost(apiResp)))
+}
+
+export function addPost({ id, title }) {
   return {
     type: ADD_POST,
-    id: Math.floor(Math.random() * 20),
+    id,
     title
   };
 }
