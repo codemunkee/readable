@@ -53,15 +53,54 @@ export function postPost(postData) {
     });
 }
 
-export function removePost(postId) {
+export function incrementPostVotes(postID) {
+  /* Increase the number of votes a post has by 1 */
+
+  const payload = { 'option': 'upVote' };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'POST',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/posts/' + postID, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to up vote post.', error);
+      return {};
+    });
+}
+
+export function decrementPostVotes(postID) {
+  /* Decrease the number of votes a post has by 1 */
+
+  const payload = { 'option': 'downVote' };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'POST',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/posts/' + postID, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to up down vote post.', error);
+      return {};
+    });
+}
+
+export function removePost(postID) {
   /* Remove a post via the API */
 
   const init = Object.assign({}, stockInit, {'method': 'DELETE'});
 
-  return fetch('http://localhost:3001/posts/' + postId, init)
+  return fetch('http://localhost:3001/posts/' + postID, init)
     .then(resp => resp.json())
     .then(resp => {
-      console.log(resp);
       return resp;
     })
     .catch(error => {

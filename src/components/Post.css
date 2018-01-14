@@ -9,6 +9,7 @@
 }
 
 .Post-logo {
+  cursor: pointer;
   height: 14px;
   width: 14px;
   padding-right: 5px;
