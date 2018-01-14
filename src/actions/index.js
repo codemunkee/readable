@@ -23,14 +23,13 @@ export const receivePosts = posts => ({
 export const postPost = postData => dispatch => {
   APIUtil
     .postPost(postData)
-    .then(apiResp => dispatch(addPost(apiResp)))
+    .then(postData => dispatch(addPost(postData)))
 }
 
-export function addPost({ id, title }) {
+export function addPost(post) {
   return {
     type: ADD_POST,
-    id,
-    title
+    post: post
   };
 }
 

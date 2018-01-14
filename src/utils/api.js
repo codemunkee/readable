@@ -35,7 +35,8 @@ export function postPost(postData) {
     'timestamp': 234,
     'body': postData.body,
     'author': 'russ',
-    'category': 'redux'
+    'category': 'redux',
+    'voteScore': 1
   };
 
   const init = Object.assign({}, stockInit,

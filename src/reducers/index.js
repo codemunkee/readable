@@ -9,17 +9,24 @@ import {
 } from '../actions';
 
 function posts(state = {}, action) {
-  const { id, title } = action
+  const { id } = action
 
   switch (action.type) {
     case ADD_POST:
-      return Object.assign({}, state, {[id]: { title }});
+      return {
+        ...state,
+        [id]: {
+          ...action.post
+        }
+      }
     case REMOVE_POST:
       const aState = Object.assign({}, state);
       delete aState[id];
       return aState
     case RECEIVE_POSTS:
-      return Object.assign({}, action.posts)
+      return {
+        ...action.posts
+      }
     case UP_VOTE_POST:
       return {
         ...state,
