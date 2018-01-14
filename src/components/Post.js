@@ -12,7 +12,7 @@ class Post extends Component {
   }
 
   render() {
-    const { number, title } = this.props.post;
+    const { number, title, voteScore } = this.props.post;
     return (
       <div className="Post">
         <div className="Post-line-one">
@@ -25,7 +25,7 @@ class Post extends Component {
           </span>
         </div>
         <div className="Post-line-two">
-          <span>0 votes by poster 2 minutes ago | <span onClick={this.handleRemove}>remove</span> | discuss</span>
+          <span>{voteScore} votes by poster 2 minutes ago | <span onClick={this.handleRemove}>remove</span> | discuss</span>
         </div>
       </div>
     )
