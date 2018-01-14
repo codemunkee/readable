@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import IconArrowUp from './IconArrowUp.svg';
 import { connect } from 'react-redux';
-import { removePost } from '../actions';
+import { deletePost } from '../actions';
 import './Post.css';
 
 
@@ -38,7 +38,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    removePost: (data) => dispatch(removePost(data))
+    removePost: (data) => dispatch(deletePost(data))
   }
 }
 

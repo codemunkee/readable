@@ -45,11 +45,27 @@ export function postPost(postData) {
   return fetch('http://localhost:3001/posts', init)
     .then(resp => resp.json())
     .then(resp => {
-      console.log(resp);
       return resp;
     })
     .catch(error => {
       console.log('Error: Unable to add post.', error);
+      return {};
+    });
+}
+
+export function removePost(postId) {
+  /* Remove a post via the API */
+
+  const init = Object.assign({}, stockInit, {'method': 'DELETE'});
+
+  return fetch('http://localhost:3001/posts/' + postId, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      console.log(resp);
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to delete post.', error);
       return {};
     });
 }

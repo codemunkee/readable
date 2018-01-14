@@ -32,6 +32,14 @@ export function addPost({ id, title }) {
   };
 }
 
+// Delete a post
+
+export const deletePost = postID => dispatch => {
+  APIUtil
+    .removePost(postID)
+    .then(apiResp => dispatch(removePost(apiResp.id)))
+}
+
 export function removePost(id) {
   return {
     type: REMOVE_POST,
