@@ -15,7 +15,7 @@ function posts(state = {}, action) {
     case ADD_POST:
       return {
         ...state,
-        [id]: {
+        [action.post.id]: {
           ...action.post
         }
       }
@@ -32,7 +32,7 @@ function posts(state = {}, action) {
         ...state,
         [id]: {
           ...state[id],
-          voteScore: state[action.id].voteScore += 1
+          voteScore: state[id].voteScore += 1
         }
       }
     case DOWN_VOTE_POST:
@@ -40,7 +40,7 @@ function posts(state = {}, action) {
         ...state,
         [id]: {
           ...state[id],
-          voteScore: state[action.id].voteScore -= 1
+          voteScore: state[id].voteScore -= 1
         }
       }
     default :
