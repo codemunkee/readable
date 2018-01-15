@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
 import { connect } from 'react-redux';
@@ -20,7 +21,7 @@ class PostInfo extends Component {
   }
 
   render() {
-    const { number, title, voteScore } = this.props.post;
+    const { id, number, title, voteScore } = this.props.post;
     return (
       <div className="PostInfo">
         <div className="PostInfo-line-one">
@@ -29,7 +30,7 @@ class PostInfo extends Component {
             <img src={IconArrowDown} className="PostInfo-logo" alt="arrow down" onClick={this.handleDownVote} />
           </span>
           <span>
-            {title}
+            <Link to={'/post/' + id}>{title}</Link>
           </span>
         </div>
         <div className="PostInfo-line-two">
