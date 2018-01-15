@@ -1,0 +1,27 @@
+.PostInfo {
+  font-family: Verdana, Geneva, sans-serif;
+  padding: 4px;
+  width: 100%;
+}
+
+.PostInfo-line-one {
+  font-size: .9em;
+}
+
+.PostInfo-logo {
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  padding-right: 5px;
+}
+
+.PostInfo-number {
+  color: #828282;
+}
+
+.PostInfo-line-two {
+  font-size: .8em;
+  margin-top: 2px;
+  margin-left: 38px;
+  color: #828282;
+}

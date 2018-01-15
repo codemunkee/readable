@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postPost } from '../actions';
-import './Post.css';
+import './PostSubmit.css';
 
 class PostSubmit extends Component {
 

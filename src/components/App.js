@@ -11,6 +11,8 @@ class App extends Component {
     return (
       <div className="App">
 
+        { /* The Main Landing Page */ }
+
         <Route path="/" exact render={() => (
           <div className="App-main">
             <header className="App-header">

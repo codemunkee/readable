@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './PostList.css';
-import Post from './Post';
+import PostInfo from './PostInfo';
 import { fetchPosts } from '../actions';
 
 
@@ -11,7 +11,7 @@ class PostList extends Component {
     const { posts } = this.props;
     return (
       <div className="PostList">
-        { posts.map(post => <Post key={post.id} post={post} />) }
+        { posts.map(post => <PostInfo key={post.id} post={post} />) }
       </div>
     )
   }
