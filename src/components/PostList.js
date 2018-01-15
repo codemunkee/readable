@@ -18,12 +18,11 @@ class PostList extends Component {
 }
 
 function addPostNumber(posts) {
-  // we add a property with a sort number to each post as well as their id,
-  // the former is just a convenience thing, the latter is because the posts
-  // are returned in an array (to ensure order)
+  // we add a property with a sort number to each post as
+  // just a convenience thing
   let count = 1;
   return Object.keys(posts).map(postId => {
-    const newPost = { ...posts[postId], 'id': postId, 'number': count++}
+    const newPost = { ...posts[postId], 'number': count++}
     return newPost;
   })
 }
