@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "nodemon": "1.14.11",
     "prop-types": "15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -14,7 +15,7 @@
     "redux-thunk": "2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start | nodemon ./api-server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
