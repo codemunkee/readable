@@ -54,6 +54,10 @@ class PostView extends Component {
               {post.body}
             </p>
           </div>
+          <div>
+            <hr/>
+            <h2>Comments</h2>
+          </div>
         </div>
       )
     }
@@ -68,7 +72,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-function mapStateToProps (posts) {
+function mapStateToProps(posts) {
   return posts;
 }
 
