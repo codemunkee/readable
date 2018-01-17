@@ -7,8 +7,7 @@ class PostSubmit extends Component {
 
   state = {
     title: '',
-    url: '',
-    text: ''
+    body: ''
   }
 
   handleChange = event => {
@@ -17,7 +16,8 @@ class PostSubmit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addPost({'title': this.state.title})
+    this.props.addPost({'title': this.state.title,
+                        'body': this.state.body})
   }
 
   render() {
@@ -32,24 +32,15 @@ class PostSubmit extends Component {
                  onChange={this.handleChange} />
           <br/>
 
-          <label>url</label>
-          <input name="url"
-                 type="text"
-                 value={this.state.url}
-                 onChange={this.handleChange} />
-          <br/>
-
-          <p><strong>or</strong></p>
-
           <div className="PostSubmit-text">
-            <label>text</label>
-            <textarea name="text"
-                      value={this.state.text}
+            <label>body</label>
+            <textarea name="body"
+                      value={this.state.body}
                       onChange={this.handleChange} />
             <br/>
           </div>
         </fieldset>
-        <input className="PostSubmit-button" type="submit" value="submit" />
+        <button className="PostSubmit-button" type="submit" value="submit">Submit</button>
       </form>
     )
   }
