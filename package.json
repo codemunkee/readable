@@ -15,7 +15,7 @@
     "redux-thunk": "2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start | nodemon ./api-server/server.js",
+    "start": "react-scripts start | nodemon --watch api-server ./api-server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
