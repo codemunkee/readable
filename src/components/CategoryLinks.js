@@ -8,7 +8,7 @@ class CategoryLinks extends Component {
     return (
       <div className="CategoryLinks">
         { this.props.categories.items.map(item =>
-           <Link to={'/category/' + item.path}>{item.name}</Link>
+           <Link key={item.name} to={'/category/' + item.path}>{item.name}</Link>
         )}
       </div>
     )
