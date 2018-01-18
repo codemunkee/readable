@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 
 import {
+  FETCH_CATEGORIES,
+  RECEIVE_CATEGORIES,
   POST_POST,
   ADD_POST,
   FETCH_POSTS,
@@ -10,6 +12,29 @@ import {
   UP_VOTE_POST,
   DOWN_VOTE_POST,
 } from '../actions';
+
+const initCategoriesState = {
+  isFetching: false,
+  items: []
+}
+
+function categories(state = initCategoriesState, action) {
+  switch (action.type) {
+    case FETCH_CATEGORIES:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case RECEIVE_CATEGORIES:
+      return {
+        ...state,
+        isFetching: false,
+        items: action.categories
+      }
+    default:
+      return state
+  }
+}
 
 const initPostsState = {
   isFetching: false,
@@ -27,6 +52,12 @@ function posts(state = initPostsState, action) {
       return {
         ...state,
         isFetching: true
+      }
+    case RECEIVE_POSTS:
+      return {
+        ...state,
+        isFetching: false,
+        items: action.posts
       }
     case POST_POST:
       return {
@@ -54,12 +85,6 @@ function posts(state = initPostsState, action) {
       newState.removingPost = false;
       delete newState.items[id];
       return newState
-    case RECEIVE_POSTS:
-      return {
-        ...state,
-        isFetching: false,
-        items: action.posts
-      }
     case UP_VOTE_POST:
       return {
         ...state,
@@ -89,4 +114,5 @@ function posts(state = initPostsState, action) {
 
 export default combineReducers({
   posts,
+  categories
 })

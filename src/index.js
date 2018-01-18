@@ -8,7 +8,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
-import { fetchPosts } from './actions';
+import { fetchPosts, fetchCategories } from './actions';
 
 const logger = store => next => action => {
   console.group(action.type);
@@ -30,6 +30,7 @@ const store = createStore(
 
 // init our redux store
 store.dispatch(fetchPosts());
+store.dispatch(fetchCategories());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,4 +1,6 @@
 import * as APIUtil from '../utils/api';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const POST_POST = 'POST_POST';
@@ -7,6 +9,23 @@ export const UP_VOTE_POST = 'UP_VOTE_POST';
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
+
+// Retreive Categories
+
+export const fetchCategories = () => dispatch => {
+  dispatch({
+    type: FETCH_CATEGORIES
+  });
+
+  APIUtil
+    .fetchCategories()
+    .then(categories => dispatch(receiveCategories(categories)))
+}
+
+export const receiveCategories = categories => ({
+  type: RECEIVE_CATEGORIES,
+  categories
+});
 
 // Retrieve all posts
 

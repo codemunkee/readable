@@ -6,6 +6,22 @@ const stockInit = { headers,
                     cache: 'default' };
 
 
+export function fetchCategories() {
+  /* Retrieve categories from the API */
+  const init = Object.assign({}, stockInit, {'method': 'GET'})
+
+  return fetch('http://localhost:3001/categories', init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp.categories;
+    })
+    .catch(error => {
+      console.log('Error: Unable to retrieve categories.', error);
+      return {};
+    });
+}
+
+
 export function fetchPosts() {
   /* Retrieve all posts from the API */
   const init = Object.assign({}, stockInit, {'method': 'GET'})
@@ -30,7 +46,6 @@ export function fetchPosts() {
 export function postPost(postData) {
   /* Post a new post to the API */
   const payload = {
-    'id' : 'x23yz' + Math.floor(Math.random() * 10),
     'title': postData.title,
     'timestamp': 234,
     'body': postData.body,

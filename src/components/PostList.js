@@ -33,12 +33,13 @@ function addPostNumber(posts) {
   })
 }
 
-function mapStateToProps (posts) {
+function mapStateToProps(state) {
   //return {'posts': addPostNumber(posts) };
-  return posts;
+  console.log(state);
+  return state;
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
   }

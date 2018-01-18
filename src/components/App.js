@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 import './App.css';
 import AppTitle from './AppTitle';
+import CategoryLinks from './CategoryLinks';
 import PostList from './PostList';
 import PostView from './PostView';
 import PostSubmit from './PostSubmit';
@@ -21,6 +22,7 @@ class App extends Component {
               <span className="App-menu">
                 <Link to="/submit">submit</Link> | sort
               </span>
+              <CategoryLinks />
             </header>
             <div className="App-body">
               <PostList/>
