@@ -24,13 +24,13 @@ class PostView extends Component {
   }
 
   render()  {
-    const postID = this.props.match.params.id;
-    const post = this.props.posts[postID];
-    if (!post) {
+    if (this.props.posts.isFetching) {
       return (
         <h1>Loading...</h1>
       )
     } else {
+      const postID = this.props.match.params.id;
+      const post = this.props.posts.items[postID];
       return (
         <div className="PostView">
           <div className="PostView-title">

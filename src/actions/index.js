@@ -1,13 +1,20 @@
 import * as APIUtil from '../utils/api';
+export const FETCH_POSTS = 'FETCH_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const POST_POST = 'POST_POST';
 export const ADD_POST = 'ADD_POST';
 export const UP_VOTE_POST = 'UP_VOTE_POST';
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
+export const DELETE_POST = 'DELETE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 // Retrieve all posts
 
 export const fetchPosts = () => dispatch => {
+  dispatch({
+    type: FETCH_POSTS
+  });
+
   APIUtil
     .fetchPosts()
     .then(posts => dispatch(receivePosts(posts)))
@@ -21,6 +28,10 @@ export const receivePosts = posts => ({
 // Add a new post
 
 export const postPost = postData => dispatch => {
+  dispatch({
+    type: POST_POST
+  });
+
   APIUtil
     .postPost(postData)
     .then(postData => dispatch(addPost(postData)))
@@ -66,6 +77,10 @@ export function downVotePost({ id }) {
 // Delete a post
 
 export const deletePost = postID => dispatch => {
+  dispatch({
+    type: DELETE_POST
+  });
+
   APIUtil
     .removePost(postID)
     .then(apiResp => dispatch(removePost(apiResp.id)))

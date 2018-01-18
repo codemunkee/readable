@@ -8,12 +8,18 @@ import { fetchPosts } from '../actions';
 class PostList extends Component {
 
   render() {
-    const { posts } = this.props;
-    return (
-      <div className="PostList">
-        { posts.map(post => <PostInfo key={post.id} post={post} />) }
-      </div>
-    )
+    const { items } = this.props.posts
+
+    if (this.props.posts.isFetching) {
+      return (<h1>Fetching</h1>)
+    } else {
+      const numberedPosts = addPostNumber(items);
+      return (
+        <div className="PostList">
+          { numberedPosts.map(post => <PostInfo key={post.id} post={post} />) }
+        </div>
+      )
+    }
   }
 }
 
@@ -27,8 +33,9 @@ function addPostNumber(posts) {
   })
 }
 
-function mapStateToProps ({posts}) {
-  return {'posts': addPostNumber(posts) };
+function mapStateToProps (posts) {
+  //return {'posts': addPostNumber(posts) };
+  return posts;
 }
 
 function mapDispatchToProps (dispatch) {
