@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './PostList.css';
 import PostInfo from './PostInfo';
 import { fetchPosts } from '../actions';
+import './PostList.css';
 
 
 class PostList extends Component {
@@ -34,8 +34,6 @@ function addPostNumber(posts) {
 }
 
 function mapStateToProps(state) {
-  //return {'posts': addPostNumber(posts) };
-  console.log(state);
   return state;
 }
 

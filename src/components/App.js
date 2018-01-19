@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import './App.css';
 import AppTitle from './AppTitle';
 import CategoryLinks from './CategoryLinks';
+import CategoryView from './CategoryView';
 import PostList from './PostList';
 import PostView from './PostView';
 import PostSubmit from './PostSubmit';
@@ -19,9 +20,9 @@ class App extends Component {
           <div className="App-main">
             <header className="App-header">
               <AppTitle name="Readable"/>
-              <span className="App-menu">
+              <div className="App-menu">
                 <Link to="/submit">submit</Link> | sort
-              </span>
+              </div>
               <CategoryLinks />
             </header>
             <div className="App-body">
@@ -42,6 +43,23 @@ class App extends Component {
             </header>
             <div className="App-body">
               <PostView {...props}/>
+            </div>
+          </div>
+        )} />
+
+        { /* View a Category of Posts */ }
+
+        <Route path="/category/:id" render={props => (
+          <div className="App-main">
+            <header className="App-header">
+              <AppTitle name="Readable"/>
+              <span className="App-menu">
+                <Link to="/submit">submit</Link> | sort
+              </span>
+              <CategoryLinks />
+            </header>
+            <div className="App-body">
+              <CategoryView {...props}/>
             </div>
           </div>
         )} />
