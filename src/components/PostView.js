@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
+import CommentList from './CommentList';
 import { incrementPostVotes, decrementPostVotes, deletePost } from '../actions';
 import './PostView.css';
 
@@ -57,6 +58,7 @@ class PostView extends Component {
           <div>
             <hr/>
             <h2>Comments</h2>
+            <CommentList postID={postID} />
           </div>
         </div>
       )
@@ -72,8 +74,8 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-function mapStateToProps(posts) {
-  return posts;
+function mapStateToProps(state) {
+  return state;
 }
 
 export default connect(
