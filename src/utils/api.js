@@ -50,7 +50,7 @@ export function postPost(postData) {
     'timestamp': 234,
     'body': postData.body,
     'author': 'russ',
-    'category': 'redux',
+    'category': postData.category,
     'voteScore': 1
   };
 
