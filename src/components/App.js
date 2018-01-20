@@ -7,6 +7,7 @@ import CategoryView from './CategoryView';
 import PostList from './PostList';
 import PostView from './PostView';
 import PostSubmit from './PostSubmit';
+import PostEdit from './PostEdit';
 
 class App extends Component {
 
@@ -33,7 +34,7 @@ class App extends Component {
 
         { /* View a Post */ }
 
-        <Route path="/post/:id" render={props => (
+        <Route path="/post/:id" exact render={props => (
           <div className="App-main">
             <header className="App-header">
               <AppTitle name="Readable"/>
@@ -76,6 +77,20 @@ class App extends Component {
             </div>
           </div>
         )} />
+
+        { /* Edit an existing Post */ }
+
+        <Route path="/post/:id/edit" exact render={() => (
+          <div className="App-submit">
+            <header className="App-header">
+              <AppTitle name="Edit Post"/>
+            </header>
+            <div className="App-body">
+              <PostEdit/>
+            </div>
+          </div>
+        )} />
+
 
       </div>
 

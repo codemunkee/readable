@@ -34,7 +34,11 @@ class PostInfo extends Component {
           </span>
         </div>
         <div className="PostInfo-line-two">
-          <span>{voteScore} votes by poster 2 minutes ago | <span onClick={this.handleRemove}>remove</span> | discuss</span>
+          <span>{voteScore} votes by poster 2 minutes ago |&nbsp;
+            <a role="button" onClick={this.handleRemove}>remove</a>
+             &nbsp;|&nbsp;
+            <Link to={'/post/' + id + '/edit'}>edit</Link>
+          </span>
         </div>
       </div>
     )
