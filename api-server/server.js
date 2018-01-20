@@ -236,6 +236,7 @@ app.put('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.get('/posts/:id/comments', (req, res) => {
+  console.log('REQUEST', req)
     comments.getByParent(req.token, req.params.id)
       .then(
           (data) => res.send(data),

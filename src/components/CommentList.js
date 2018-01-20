@@ -9,9 +9,22 @@ class CommentList extends Component {
   }
 
   render() {
-    return (
-      <h1>Howdy!</h1>
-    )
+    console.log('Comment View', this.props);
+    if (this.props.comments.isFetching) {
+      return (
+        <h1>Fetching Posts</h1>
+      )
+    } else {
+      if (Object.keys(this.props.comments.items).length === 0) {
+        return (
+          <h1>No Comments Found</h1>
+        )
+      } else {
+        return (
+          <h1>Howdy</h1>
+        )
+      }
+    }
   }
 }
 
