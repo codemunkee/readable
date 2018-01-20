@@ -11,7 +11,11 @@ import {
   REMOVE_POST,
   UP_VOTE_POST,
   DOWN_VOTE_POST,
+  FETCH_COMMENTS,
+  RECEIVE_COMMENTS,
 } from '../actions';
+
+// CATEGORIES
 
 const initCategoriesState = {
   isFetching: false,
@@ -35,6 +39,8 @@ function categories(state = initCategoriesState, action) {
       return state
   }
 }
+
+// POSTS
 
 const initPostsState = {
   isFetching: false,
@@ -112,7 +118,27 @@ function posts(state = initPostsState, action) {
   }
 }
 
+// COMMENTS
+
+const initCommentsState = {
+  isFetching: false,
+  postingComment: false,
+  removingComment: false,
+  invalidReq: false,
+  items: {}
+}
+
+function comments(state = initCommentsState, action) {
+  const { id } = action
+
+  switch(action.type) {
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   posts,
-  categories
+  categories,
+  comments
 })

@@ -9,6 +9,8 @@ export const UP_VOTE_POST = 'UP_VOTE_POST';
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 
 // Retreive Categories
 
@@ -111,3 +113,20 @@ export function removePost(id) {
     id
   };
 }
+
+// Retrieve all comments for a post
+
+export const fetchComments = () => dispatch => {
+  dispatch({
+    type: FETCH_COMMENTS
+  });
+
+  APIUtil
+    .fetchPosts()
+    .then(comments => dispatch(receiveComments(comments)))
+}
+
+export const receiveComments = comments => ({
+  type: RECEIVE_COMMENTS,
+  comments
+});
