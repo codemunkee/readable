@@ -7,7 +7,8 @@ class PostSubmit extends Component {
 
   state = {
     title: '',
-    body: ''
+    body: '',
+    category: ''
   }
 
   handleChange = event => {
@@ -16,7 +17,9 @@ class PostSubmit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log('POST', this.state)
     this.props.addPost({'title': this.state.title,
+                        'category': this.state.category,
                         'body': this.state.body})
   }
 
@@ -31,6 +34,14 @@ class PostSubmit extends Component {
                  value={this.state.title}
                  onChange={this.handleChange} />
           <br/>
+
+          <label>category</label>
+          <select name="category" onChange={this.handleChange}>
+          { this.props.categories.map(category =>
+            <option key={category.name}
+                    value={category.name}>{category.name}</option>)
+          }
+          </select>
 
           <div className="PostSubmit-text">
             <label>body</label>
@@ -47,7 +58,9 @@ class PostSubmit extends Component {
 }
 
 function mapStateToProps (state) {
-  return {'posts': state.posts };
+  console.log(state)
+
+  return {'categories': state.categories.items};
 }
 
 function mapDispatchToProps (dispatch) {
