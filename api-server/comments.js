@@ -61,9 +61,12 @@ function add (token, comment) {
   return new Promise((res) => {
     let comments = getData(token)
 
-    comments[comment.id] = {
-      id: comment.id,
-      timestamp: comment.timestamp,
+    const uuid = utils.generateUUID();
+    const now = Date.now() / 1000;
+
+    comments[uuid] = {
+      id: uuid,
+      timestamp: now,
       body: comment.body,
       author: comment.author,
       parentId: comment.parentId,
@@ -73,7 +76,7 @@ function add (token, comment) {
     }
 
     posts.incrementCommentCounter(token, comment.parentId, 1)
-    res(comments[comment.id])
+    res(comments[uuid])
   })
 }
 

@@ -141,7 +141,32 @@ export function fetchComments(postID) {
       return reduxified;
     })
     .catch(error => {
-      console.log('Error: Unable to retrieve posts.', error);
+      console.log('Error: Unable to retrieve comments.', error);
+      return {};
+    });
+}
+
+export function postComment(commentData) {
+  /* Post a new post to the API */
+  const payload = {
+    'timestamp': 234,
+    'body': commentData.body,
+    'parentId': commentData.parentId,
+    'author': 'russ',
+    'voteScore': 1
+  };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'POST',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/comments', init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to add comment.', error);
       return {};
     });
 }

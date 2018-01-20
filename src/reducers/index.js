@@ -13,6 +13,8 @@ import {
   DOWN_VOTE_POST,
   FETCH_COMMENTS,
   RECEIVE_COMMENTS,
+  POST_COMMENT,
+  ADD_COMMENT,
 } from '../actions';
 
 // CATEGORIES
@@ -130,6 +132,23 @@ const initCommentsState = {
 
 function comments(state = initCommentsState, action) {
   switch(action.type) {
+    case POST_COMMENT:
+      return {
+        ...state,
+        postingComment: true
+      }
+    case ADD_COMMENT:
+      console.log('ACTION COMMENT', action.comment)
+      return {
+        ...state,
+        postingComment: false,
+        items: {
+          ...state.items,
+          [action.comment.id]: {
+            ...action.comment
+          }
+        }
+      }
     case FETCH_COMMENTS:
       return {
         ...state,

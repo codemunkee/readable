@@ -10,10 +10,10 @@ export default function AppTitle(props) {
     <div className="App-title">
       <Link to="/">
         <img className="App-logo" src={IconR} alt="icon" />
-        <span className="App-title">
-          { props.name }
-        </span>
       </Link>
+      <span className="App-title">
+        { props.name }
+      </span>
     </div>
   )
 }

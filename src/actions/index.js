@@ -11,6 +11,8 @@ export const DELETE_POST = 'DELETE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+export const POST_COMMENT = 'POST_COMMENT';
+export const ADD_COMMENT = 'ADD_COMMENT';
 
 // Retreive Categories
 
@@ -130,3 +132,22 @@ export const receiveComments = comments => ({
   type: RECEIVE_COMMENTS,
   comments
 });
+
+// Add a new comment
+
+export const postComment = commentData => dispatch => {
+  dispatch({
+    type: POST_COMMENT
+  });
+
+  APIUtil
+    .postComment(commentData)
+    .then(commentData => dispatch(addComment(commentData)))
+}
+
+export function addComment(comment) {
+  return {
+    type: ADD_COMMENT,
+    comment
+  };
+}

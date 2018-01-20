@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments } from '../actions';
+import IconArrowUp from './IconArrowUp.svg';
+import IconArrowDown from './IconArrowDown.svg';
 import './CommentList.css';
 
 class CommentList extends Component {
@@ -38,6 +40,8 @@ class CommentList extends Component {
             { comments.map(comment =>
               <section key={comment.id}>
                 <div className="CommentList-comment-heading">
+                  <img src={IconArrowUp} alt="arrow up" />
+                  <img src={IconArrowDown} alt="arrow down" />
                   {comment.voteScore} votes by poster 2 minutes ago | <span>remove</span>
                 </div>
                 <p>{comment.body}</p>

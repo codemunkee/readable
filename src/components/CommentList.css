@@ -21,3 +21,10 @@
   color: #828282;
   font-size: .8em;
 }
+
+.CommentList img {
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  padding-right: 5px;
+}
