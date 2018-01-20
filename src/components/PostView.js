@@ -57,7 +57,6 @@ class PostView extends Component {
           </div>
           <div>
             <hr/>
-            <h2>Comments</h2>
             <CommentList postID={postID} />
           </div>
         </div>

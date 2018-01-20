@@ -116,13 +116,13 @@ export function removePost(id) {
 
 // Retrieve all comments for a post
 
-export const fetchComments = () => dispatch => {
+export const fetchComments = postID => dispatch => {
   dispatch({
     type: FETCH_COMMENTS
   });
 
   APIUtil
-    .fetchComments()
+    .fetchComments(postID)
     .then(comments => dispatch(receiveComments(comments)))
 }
 

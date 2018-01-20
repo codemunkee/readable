@@ -8,20 +8,32 @@ class CommentList extends Component {
     this.props.fetchComments(this.props.postID);
   }
 
+  composeComments() {
+    // parse comments so that they're more easily presented in the view
+    let comments = Object.keys(this.props.comments.items).map(commentID =>
+      this.props.comments.items[commentID])
+    return comments;
+  }
+
   render() {
-    console.log('Comment View', this.props);
     if (this.props.comments.isFetching) {
       return (
-        <h1>Fetching Posts</h1>
+        <h2>Fetching Comments</h2>
       )
     } else {
       if (Object.keys(this.props.comments.items).length === 0) {
         return (
-          <h1>No Comments Found</h1>
+          <h2>No Comments Found</h2>
         )
       } else {
+        const comments = this.composeComments();
         return (
-          <h1>Howdy</h1>
+          <div className="CommentList">
+            <h2>Comments</h2>
+            { comments.map(comment =>
+              <section key={comment.id}><p>{comment.body}</p></section>
+            )}
+          </div>
         )
       }
     }

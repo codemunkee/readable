@@ -128,12 +128,10 @@ export function removePost(postID) {
 export function fetchComments(postID) {
   /* Retrieve all comments from the API for a particular postID */
   const init = Object.assign({}, stockInit, {'method': 'GET'})
-  console.log('POSTID', postID)
 
   return fetch('http://localhost:3001/posts/' + postID + '/comments', init)
     .then(resp => resp.json())
     .then(resp => {
-      console.log('API RESP', resp);
       // convert our response of an array of objects to an object of objects,
       // the latter is the preferred way of describing state in redux
       const reduxified = resp.reduce((accumulator, item) => {
