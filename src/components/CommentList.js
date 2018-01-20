@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments } from '../actions';
+import './CommentList.css';
 
 class CommentList extends Component {
 
@@ -18,12 +19,16 @@ class CommentList extends Component {
   render() {
     if (this.props.comments.isFetching) {
       return (
-        <h2>Fetching Comments</h2>
+        <div className="CommentList">
+          <h2>Fetching Comments</h2>
+        </div>
       )
     } else {
       if (Object.keys(this.props.comments.items).length === 0) {
         return (
-          <h2>No Comments Found</h2>
+          <div className="CommentList">
+            <h2>No Comments Found</h2>
+          </div>
         )
       } else {
         const comments = this.composeComments();

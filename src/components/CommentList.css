@@ -1,0 +1,17 @@
+.CommentList {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.CommentList h2 {
+  font-size: 1em;
+}
+
+.CommentList section {
+  background-color: white;
+}
+
+.CommentList p {
+  padding-left: 5px;
+  padding-right: 5px;
+}
