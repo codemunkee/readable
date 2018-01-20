@@ -3,8 +3,7 @@ const clone = require('clone')
 
 let db = {}
 
-const id1 = utils.generateUUID();
-const id2 = utils.generateUUID();
+const [ id1, id2 ] = utils.initialPostIDs();
 
 const defaultData = {
   [id1]: {

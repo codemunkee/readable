@@ -122,7 +122,7 @@ export const fetchComments = () => dispatch => {
   });
 
   APIUtil
-    .fetchPosts()
+    .fetchComments()
     .then(comments => dispatch(receiveComments(comments)))
 }
 

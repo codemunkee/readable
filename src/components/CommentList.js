@@ -9,7 +9,6 @@ class CommentList extends Component {
   }
 
   render() {
-    console.log("PROPS", this.props)
     return (
       <h1>Howdy!</h1>
     )

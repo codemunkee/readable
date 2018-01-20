@@ -129,9 +129,18 @@ const initCommentsState = {
 }
 
 function comments(state = initCommentsState, action) {
-  const { id } = action
-
   switch(action.type) {
+    case FETCH_COMMENTS:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case RECEIVE_COMMENTS:
+      return {
+        ...state,
+        isFetching: false,
+        items: action.comments
+      }
     default:
       return state
   }

@@ -1,12 +1,15 @@
 const clone = require('clone')
 const posts = require('./posts')
+const utils = require('./utils')
 
 let db = {}
+
+const [ id1, id2 ] = utils.initialPostIDs();
 
 const defaultData = {
   "894tuq4ut84ut8v4t8wun89g": {
     id: '894tuq4ut84ut8v4t8wun89g',
-    parentId: "8xf0y6ziyjabvozdd253nd",
+    parentId: id1,
     timestamp: 1468166872634,
     body: 'Hi there! I am a COMMENT.',
     author: 'thingtwo',
@@ -16,7 +19,7 @@ const defaultData = {
   },
   "8tu4bsun805n8un48ve89": {
     id: '8tu4bsun805n8un48ve89',
-    parentId: "8xf0y6ziyjabvozdd253nd",
+    parentId: id2,
     timestamp: 1469479767190,
     body: 'Comments. Are. Cool.',
     author: 'thingone',
