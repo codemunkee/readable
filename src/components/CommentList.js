@@ -36,7 +36,12 @@ class CommentList extends Component {
           <div className="CommentList">
             <h2>Comments</h2>
             { comments.map(comment =>
-              <section key={comment.id}><p>{comment.body}</p></section>
+              <section key={comment.id}>
+                <div className="CommentList-comment-heading">
+                  {comment.voteScore} votes by poster 2 minutes ago | <span>remove</span>
+                </div>
+                <p>{comment.body}</p>
+              </section>
             )}
           </div>
         )

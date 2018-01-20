@@ -26,7 +26,6 @@ class CommentSubmit extends Component {
         <fieldset>
 
           <div className="CommentSubmit-text">
-            <label>body</label>
             <textarea name="body"
                       value={this.state.body}
                       onChange={this.handleChange} />
