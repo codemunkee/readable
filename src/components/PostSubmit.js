@@ -17,7 +17,6 @@ class PostSubmit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('POST', this.state)
     this.props.addPost({'title': this.state.title,
                         'category': this.state.category,
                         'body': this.state.body})

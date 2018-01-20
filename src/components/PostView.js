@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
+import CommentSubmit from './CommentSubmit';
 import CommentList from './CommentList';
 import { incrementPostVotes, decrementPostVotes, deletePost } from '../actions';
 import './PostView.css';
@@ -57,6 +58,7 @@ class PostView extends Component {
           </div>
           <div>
             <hr/>
+            <CommentSubmit postID={postID} />
             <CommentList postID={postID} />
           </div>
         </div>
