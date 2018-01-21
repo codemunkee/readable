@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postPost } from '../actions';
+import { postPost, fetchPosts } from '../actions';
 import './PostSubmit.css';
 
 class PostEdit extends Component {
@@ -12,12 +12,17 @@ class PostEdit extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.log('New Props')
     const post = this.props.posts.items[this.props.match.params.id];
     if (post) {
       this.setState({title: post.title,
                      body: post.body,
                      category: post.category})
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchPosts();
   }
 
   handleChange = event => {
@@ -86,13 +91,13 @@ class PostEdit extends Component {
 }
 
 function mapStateToProps (state) {
-  console.log('called', state)
   return state
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     addPost: (data) => dispatch(postPost(data)),
+    fetchPosts: () => dispatch(fetchPosts()),
   }
 }
 
