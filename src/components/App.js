@@ -80,13 +80,13 @@ class App extends Component {
 
         { /* Edit an existing Post */ }
 
-        <Route path="/post/:id/edit" exact render={() => (
+        <Route path="/post/:id/edit" exact render={props => (
           <div className="App-submit">
             <header className="App-header">
               <AppTitle name="Edit Post"/>
             </header>
             <div className="App-body">
-              <PostEdit/>
+              <PostEdit {...props}/>
             </div>
           </div>
         )} />

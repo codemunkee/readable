@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { postPost } from '../actions';
 import './PostSubmit.css';
 
-class PostEdit  extends Component {
+class PostEdit extends Component {
 
   state = {
     title: '',
@@ -11,8 +11,18 @@ class PostEdit  extends Component {
     category: ''
   }
 
+  componentWillReceiveProps(newProps) {
+    const post = this.props.posts.items[this.props.match.params.id];
+    if (post) {
+      this.setState({title: post.title,
+                     body: post.body,
+                     category: post.category})
+    }
+  }
+
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value});
+    mapStateToProps(this.state)
   }
 
   handleSubmit = event => {
@@ -23,43 +33,61 @@ class PostEdit  extends Component {
   }
 
   render() {
+    const categories = this.props.categories.items;
+    const post = this.props.posts.items[this.props.match.params.id];
     return (
-      <form className="PostSubmit" onSubmit={this.handleSubmit} >
-        <fieldset>
+      <div>
+      { this.props.posts.isFetching &&
+        this.props.categories.isFetching &&
+        <h2>Fetching Post Info</h2> }
 
-          <label>title</label>
-          <input name="title"
-                 type="text"
-                 value={this.state.title}
-                 onChange={this.handleChange} />
-          <br/>
+      { !this.props.posts.isFetching &&
+        !this.props.categories.isFetching &&
+        !post &&
+        <h2>Post not found :(</h2> }
 
-          <label>category</label>
-          <select name="category" onChange={this.handleChange}>
-          { this.props.categories.map(category =>
-            <option key={category.name}
-                    value={category.name}>{category.name}</option>)
-          }
-          </select>
+      { !this.props.posts.isFetching &&
+        !this.props.categories.isFetching &&
+        post &&
+        <form className="PostSubmit" onSubmit={this.handleSubmit} >
+          <fieldset>
 
-          <div className="PostSubmit-text">
-            <label>body</label>
-            <textarea name="body"
-                      value={this.state.body}
-                      onChange={this.handleChange} />
+            <label>title</label>
+            <input name="title"
+                   type="text"
+                   value={this.state.title}
+                   onChange={this.handleChange} />
             <br/>
-          </div>
-        </fieldset>
-        <button className="PostSubmit-button" type="submit" value="submit">Submit</button>
-      </form>
+
+            <label>category</label>
+            <select name="category" onChange={this.handleChange}>
+            { categories.map(category =>
+              <option key={category.name}
+                      value={category.name}>
+                      {category.name}
+              </option>)
+            }
+            </select>
+
+            <div className="PostSubmit-text">
+              <label>body</label>
+              <textarea name="body"
+                        value={this.state.body}
+                        onChange={this.handleChange} />
+              <br/>
+            </div>
+          </fieldset>
+          <button className="PostSubmit-button" type="submit" value="submit">Submit</button>
+        </form>
+      }
+      </div>
     )
   }
 }
 
 function mapStateToProps (state) {
-  console.log(state)
-
-  return {'categories': state.categories.items};
+  console.log('called', state)
+  return state
 }
 
 function mapDispatchToProps (dispatch) {
