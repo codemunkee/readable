@@ -68,7 +68,7 @@ class PostEdit extends Component {
             <br/>
 
             <label>category</label>
-            <select name="category" onChange={this.handleChange}>
+            <select name="category" value={post.category} onChange={this.handleChange}>
             { categories.map(category =>
               <option key={category.name}
                       value={category.name}>
