@@ -4,3 +4,44 @@
   margin-bottom: 12px;
   vertical-align: middle;
 }
+
+.AppMenu li {
+  display: inline-block;
+}
+
+.AppMenu li ul {
+  width: 90px;
+  border: black 2px solid;
+  position: absolute;
+  display: none;
+  background-color: #ff6600;
+  top: 15px;
+}
+
+.AppMenu li ul li {
+  display: block;
+  background-color: #f6f6ef;
+  margin: 3px;
+  padding-left: 5px;
+}
+
+.AppMenu li:hover ul {
+    display: block;
+}
+
+ul,ol,li {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.AppMenu-arrow-box {
+  display: inline;
+  float: right;
+}
+
+.AppMenu-arrow {
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  padding-right: 5px;
+}
