@@ -69,6 +69,29 @@ export function postPost(postData) {
     });
 }
 
+export function putPost(postData) {
+  /* Edit a post through the API */
+  const payload = {
+    'title': postData.title,
+    'body': postData.body,
+    'category': postData.category
+  };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'PUT',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/posts/' + postData.id, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to edit post.', error);
+      return {};
+    });
+}
+
 export function incrementPostVotes(postID) {
   /* Increase the number of votes a post has by 1 */
 

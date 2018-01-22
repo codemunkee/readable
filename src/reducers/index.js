@@ -5,6 +5,8 @@ import {
   RECEIVE_CATEGORIES,
   POST_POST,
   ADD_POST,
+  PUT_POST,
+  EDIT_POST,
   FETCH_POSTS,
   RECEIVE_POSTS,
   DELETE_POST,
@@ -73,6 +75,22 @@ function posts(state = initPostsState, action) {
         postingPost: true
       }
     case ADD_POST:
+      return {
+        ...state,
+        postingPost: false,
+        items: {
+          ...state.items,
+          [action.post.id]: {
+            ...action.post
+          }
+        }
+      }
+    case PUT_POST:
+      return {
+        ...state,
+        postingPost: true
+      }
+    case EDIT_POST:
       return {
         ...state,
         postingPost: false,

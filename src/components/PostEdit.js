@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postPost, fetchPosts } from '../actions';
+import { putPost, fetchPosts } from '../actions';
 import './PostSubmit.css';
 
 class PostEdit extends Component {
 
   state = {
+    id: '',
     title: '',
     body: '',
     category: ''
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('New Props')
     const post = this.props.posts.items[this.props.match.params.id];
     if (post) {
-      this.setState({title: post.title,
+      this.setState({id: post.id,
+                     title: post.title,
                      body: post.body,
                      category: post.category})
     }
@@ -32,9 +33,11 @@ class PostEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addPost({'title': this.state.title,
-                        'category': this.state.category,
-                        'body': this.state.body})
+    this.props.editPost({'id': this.state.id,
+                         'title': this.state.title,
+                         'category': this.state.category,
+                         'body': this.state.body});
+    this.props.fetchPosts();
   }
 
   render() {
@@ -82,7 +85,10 @@ class PostEdit extends Component {
               <br/>
             </div>
           </fieldset>
-          <button className="PostSubmit-button" type="submit" value="submit">Submit</button>
+          <button className="PostSubmit-button"
+                  type="submit"
+                  value="submit">Submit
+          </button>
         </form>
       }
       </div>
@@ -96,7 +102,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    addPost: (data) => dispatch(postPost(data)),
+    editPost: (data) => dispatch(putPost(data)),
     fetchPosts: () => dispatch(fetchPosts()),
   }
 }
