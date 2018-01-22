@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
 import './App.css';
 import AppTitle from './AppTitle';
+import AppMenu from './AppMenu';
 import CategoryLinks from './CategoryLinks';
 import CategoryView from './CategoryView';
 import PostList from './PostList';
@@ -21,9 +22,7 @@ class App extends Component {
           <div className="App-main">
             <header className="App-header">
               <AppTitle name="Readable"/>
-              <div className="App-menu">
-                <Link to="/submit">submit</Link> | sort
-              </div>
+              <AppMenu />
               <CategoryLinks />
             </header>
             <div className="App-body">
@@ -38,9 +37,7 @@ class App extends Component {
           <div className="App-main">
             <header className="App-header">
               <AppTitle name="Readable"/>
-              <span className="App-menu">
-                <Link to="/submit">submit</Link> | sort
-              </span>
+              <AppMenu />
             </header>
             <div className="App-body">
               <PostView {...props}/>
@@ -54,9 +51,7 @@ class App extends Component {
           <div className="App-main">
             <header className="App-header">
               <AppTitle name="Readable"/>
-              <span className="App-menu">
-                <Link to="/submit">submit</Link> | sort
-              </span>
+              <AppMenu />
               <CategoryLinks />
             </header>
             <div className="App-body">
@@ -90,7 +85,6 @@ class App extends Component {
             </div>
           </div>
         )} />
-
 
       </div>
 

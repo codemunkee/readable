@@ -14,7 +14,6 @@ class PostView extends Component {
   }
 
   handleUpVote = data => {
-    console.log(this.props);
     this.props.upVote(this.state.postID);
   }
 
