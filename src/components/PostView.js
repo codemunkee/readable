@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
@@ -48,7 +49,10 @@ class PostView extends Component {
               {post.title}
             </span>
             <div className="PostView-subtitle">
-              <span>{post.voteScore} votes by poster 2 minutes ago | <span onClick={this.handleRemove}>remove</span></span>
+              <span>{post.voteScore} votes by poster 2 minutes ago</span>
+              <Link to={'/post/' + postID + '/edit'}> edit</Link>
+               &nbsp;|&nbsp;
+              <a role="button" onClick={this.handleRemove}>remove</a>
             </div>
           </div>
           <div className="PostView-body">
