@@ -33,6 +33,7 @@ class PostView extends Component {
     } else {
       const postID = this.props.match.params.id;
       const post = this.props.posts.items[postID];
+      const humanTime = new Date(post.timestamp).toLocaleString('en-US');
       return (
         <div className="PostView">
           <div className="PostView-title">
@@ -48,7 +49,7 @@ class PostView extends Component {
               {post.title}
             </span>
             <div className="PostView-subtitle">
-              <span>{post.voteScore} votes by poster {post.timestamp}</span>
+              <span>{post.voteScore} votes by poster {humanTime}</span>
               <Link to={'/post/' + postID + '/edit'}> edit</Link>
                &nbsp;|&nbsp;
               <a role="button" onClick={this.handleRemove}>remove</a>

@@ -22,6 +22,7 @@ class PostInfo extends Component {
 
   render() {
     const { id, number, title, timestamp, voteScore } = this.props.post;
+    const humanTime = new Date(timestamp).toLocaleString('en-US');
     return (
       <div className="PostInfo">
         <div className="PostInfo-line-one">
@@ -34,7 +35,7 @@ class PostInfo extends Component {
           </span>
         </div>
         <div className="PostInfo-line-two">
-          <span>{voteScore} votes by poster {timestamp} |&nbsp;
+          <span>{voteScore} votes by poster {humanTime} |&nbsp;
             <Link to={'/post/' + id + '/edit'}>edit</Link>
              &nbsp;|&nbsp;
             <a role="button" onClick={this.handleRemove}>remove</a>
