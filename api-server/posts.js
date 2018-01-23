@@ -72,11 +72,10 @@ function add (token, post) {
     let posts = getData(token)
 
     const uuid = utils.generateUUID();
-    const now = Date.now() / 1000;
 
     posts[uuid] = {
       id: uuid,
-      timestamp: now,
+      timestamp: Date.now(),
       title: post.title,
       body: post.body,
       author: post.author,

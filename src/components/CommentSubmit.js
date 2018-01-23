@@ -15,7 +15,6 @@ class CommentSubmit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("pROPS", this.props)
     this.props.addComment({'body': this.state.body,
                            'parentId': this.props.postID});
   }

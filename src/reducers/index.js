@@ -157,7 +157,6 @@ function comments(state = initCommentsState, action) {
         postingComment: true
       }
     case ADD_COMMENT:
-      console.log('ACTION COMMENT', action.comment)
       return {
         ...state,
         postingComment: false,

@@ -19,12 +19,33 @@ class PostList extends Component {
       return this.props.posts.items[postID];
     })
 
+    this.sortPosts(posts, this.props.sortSettings.sortSetting);
+
     // if a category is defined filter them to only that category
     if (this.props.category) {
       posts = posts.filter(post => post.category === this.props.category);
     }
 
     return this.numberPosts(posts)
+  }
+
+  sortPosts(posts, sortSetting) {
+    switch (sortSetting) {
+      case 'dateAsc':
+        posts.sort((a, b) => (a.timestamp - b.timestamp))
+        return
+      case 'dateDesc':
+        posts.sort((a, b) => (b.timestamp - a.timestamp))
+        return
+      case 'votesAsc':
+        posts.sort((a, b) => (a.voteScore - b.voteScore))
+        return
+      case 'votesDesc':
+        posts.sort((a, b) => (b.voteScore - a.voteScore))
+        return
+      default:
+        return
+    }
   }
 
   numberPosts(posts) {

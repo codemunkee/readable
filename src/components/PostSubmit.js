@@ -57,8 +57,6 @@ class PostSubmit extends Component {
 }
 
 function mapStateToProps (state) {
-  console.log(state)
-
   return {'categories': state.categories.items};
 }
 
