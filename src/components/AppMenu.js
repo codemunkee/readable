@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
+import { updateSort } from '../actions';
 import './AppMenu.css';
 
 class AppMenu extends Component {
 
-  handleSort() {
-    console.log('oh boy')
+  handleSortClick(sortType) {
+    this.props.updateSort(sortType);
   }
 
   render() {
+    const  { sortSetting } = this.props;
     return (
       <div className="AppMenu">
         <li><Link to="/submit">submit</Link></li>
@@ -21,14 +23,39 @@ class AppMenu extends Component {
               <ul>
                 <li>date
                   <div className="AppMenu-arrow-box">
-                    <img src={IconArrowUp} className="AppMenu-arrow" alt="arrow up" onClick={this.handleUpVote}/>
-                    <img src={IconArrowDown} className="AppMenu-arrow" alt="arrow down" onClick={this.handleDownVote} />
+
+                    <img src={IconArrowDown}
+                         style={(sortSetting === 'dateDesc') ?
+                           {backgroundColor: 'yellow'} :
+                           {backgroundColor: '#f6f6ef'}}
+                         className="AppMenu-arrow"
+                         alt="arrow down"
+                         onClick={() => this.handleSortClick('dateDesc')}/>
+                    <img src={IconArrowUp}
+                         style={(sortSetting === 'dateAsc') ?
+                           {backgroundColor: 'yellow'} :
+                           {backgroundColor: '#f6f6ef'}}
+                         className="AppMenu-arrow"
+                         alt="arrow up"
+                         onClick={() => this.handleSortClick('dateAsc')}/>
                   </div>
                 </li>
                 <li>votes
                   <div className="AppMenu-arrow-box">
-                    <img src={IconArrowUp} className="AppMenu-arrow" alt="arrow up" onClick={this.handleUpVote}/>
-                    <img src={IconArrowDown} className="AppMenu-arrow" alt="arrow down" onClick={this.handleDownVote} />
+                    <img src={IconArrowDown}
+                         style={(sortSetting === 'votesDesc') ?
+                           {backgroundColor: 'yellow'} :
+                           {backgroundColor: '#f6f6ef'}}
+                         className="AppMenu-arrow"
+                         alt="arrow down"
+                         onClick={() => this.handleSortClick('votesDesc')}/>
+                    <img src={IconArrowUp}
+                         style={(sortSetting === 'votesAsc') ?
+                           {backgroundColor: 'yellow'} :
+                           {backgroundColor: '#f6f6ef'}}
+                         className="AppMenu-arrow"
+                         alt="arrow up"
+                         onClick={() => this.handleSortClick('votesAsc')}/>
                   </div>
                 </li>
               </ul>
@@ -39,12 +66,13 @@ class AppMenu extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state
+function mapStateToProps({sortSettings}) {
+  return {sortSetting: sortSettings.sortSetting}
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
+    updateSort: sortType => dispatch(updateSort(sortType)),
   }
 }
 

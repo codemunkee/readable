@@ -15,6 +15,7 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const POST_COMMENT = 'POST_COMMENT';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const UPDATE_SORT = 'UPDATE_SORT';
 
 // Retreive Categories
 
@@ -170,5 +171,14 @@ export function addComment(comment) {
   return {
     type: ADD_COMMENT,
     comment
+  };
+}
+
+// Update sort settings
+
+export function updateSort(sortType){
+  return {
+    type: UPDATE_SORT,
+    sortType
   };
 }

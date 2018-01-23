@@ -17,6 +17,7 @@ import {
   RECEIVE_COMMENTS,
   POST_COMMENT,
   ADD_COMMENT,
+  UPDATE_SORT,
 } from '../actions';
 
 // CATEGORIES
@@ -183,8 +184,26 @@ function comments(state = initCommentsState, action) {
   }
 }
 
+// SORT STYLE
+
+const initSortState = {
+  sortSetting: 'dateDesc'
+}
+
+function sortSettings(state = initSortState, action) {
+  switch(action.type) {
+    case UPDATE_SORT:
+      return {
+        sortSetting: action.sortType
+      }
+      default:
+        return state
+  }
+}
+
 export default combineReducers({
   posts,
   categories,
-  comments
+  comments,
+  sortSettings
 })
