@@ -37,7 +37,6 @@ class App extends Component {
           <div className="App-main">
             <header className="App-header">
               <AppTitle name="Readable"/>
-              <AppMenu />
             </header>
             <div className="App-body">
               <PostView {...props}/>
