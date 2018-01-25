@@ -9,7 +9,7 @@ import './CommentList.css';
 class CommentList extends Component {
 
   componentDidMount() {
-    this.props.fetchComments(this.props.commentID);
+    this.props.fetchComments(this.props.postID);
   }
 
   composeComments() {
@@ -25,11 +25,11 @@ class CommentList extends Component {
 
   handleVote(commentID, voteType) {
     if (voteType === 'increment') {
-      this.props.upVotes(commentID);
+      this.props.upVote(commentID);
     }
 
     if (voteType === 'decrement') {
-      this.props.downVotes(commentID);
+      this.props.downVote(commentID);
 
     }
   }
@@ -81,7 +81,7 @@ function mapDispatchToProps(dispatch) {
   return {
     upVote: commentID => dispatch(incrementCommentVotes(commentID)),
     downVote: commentID => dispatch(decrementCommentVotes(commentID)),
-    fetchComments: commentID => dispatch(fetchComments(commentID)),
+    fetchComments: postID => dispatch(fetchComments(postID)),
     removeComment: commentID => dispatch(deleteComment(commentID))
   }
 }
