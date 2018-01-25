@@ -9,6 +9,7 @@ import PostList from './PostList';
 import PostView from './PostView';
 import PostSubmit from './PostSubmit';
 import PostEdit from './PostEdit';
+import CommentEdit from './CommentEdit';
 
 class App extends Component {
 
@@ -81,6 +82,19 @@ class App extends Component {
             </header>
             <div className="App-body">
               <PostEdit {...props}/>
+            </div>
+          </div>
+        )} />
+
+        { /* Edit an existing Comment */ }
+
+        <Route path="/post/:postid/comment/:commentid/edit" exact render={props => (
+          <div className="App-submit">
+            <header className="App-header">
+              <AppTitle name="Edit Comment"/>
+            </header>
+            <div className="App-body">
+              <CommentEdit {...props}/>
             </div>
           </div>
         )} />
