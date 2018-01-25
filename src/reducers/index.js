@@ -19,6 +19,8 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   REMOVE_COMMENT,
+  UP_VOTE_COMMENT,
+  DOWN_VOTE_COMMENT,
   UPDATE_SORT,
 } from '../actions';
 
@@ -190,6 +192,28 @@ function comments(state = initCommentsState, action) {
       newState.removingComment = false;
       delete newState.items[action.id];
       return newState
+    case UP_VOTE_COMMENT:
+      return {
+        ...state,
+          items: {
+            ...state.items,
+            [action.id]: {
+              ...state.items[action.id],
+              voteScore: state.items[action.id].voteScore += 1
+            }
+          }
+        }
+      case DOWN_VOTE_COMMENT:
+        return {
+          ...state,
+          items: {
+            ...state.items,
+            [action.id]: {
+              ...state.items[action.id],
+              voteScore: state.items[action.id].voteScore -= 1
+            }
+          }
+        }
     default:
       return state
   }

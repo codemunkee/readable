@@ -196,7 +196,7 @@ export function postComment(commentData) {
 
 export function removeComment(commentID) {
   /* Remove a comment via the API */
-  
+
   const init = Object.assign({}, stockInit, {'method': 'DELETE'});
 
   return fetch('http://localhost:3001/comments/' + commentID, init)
@@ -206,6 +206,46 @@ export function removeComment(commentID) {
     })
     .catch(error => {
       console.log('Error: Unable to delete comment.', error);
+      return {};
+    });
+}
+
+export function incrementCommentVotes(commentID) {
+  /* Increase the number of votes a comment has by 1 */
+
+  const payload = { 'option': 'upVote' };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'POST',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/comments/' + commentID, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to up vote comment.', error);
+      return {};
+    });
+}
+
+export function decrementCommentVotes(commentID) {
+  /* Decrease the number of votes a comment has by 1 */
+
+  const payload = { 'option': 'downVote' };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'POST',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/comments/' + commentID, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to up down vote comment.', error);
       return {};
     });
 }

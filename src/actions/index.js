@@ -18,6 +18,8 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const POST_COMMENT = 'POST_COMMENT';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_SORT = 'UPDATE_SORT';
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
 
 // Retreive Categories
 
@@ -191,6 +193,36 @@ export const deleteComment = commentID => dispatch => {
 export function removeComment(id) {
   return {
     type: REMOVE_COMMENT,
+    id
+  };
+}
+
+// Up vote a comment
+
+export const incrementCommentVotes = commentID => dispatch => {
+  APIUtil
+    .incrementCommentVotes(commentID)
+    .then(apiResp => dispatch(upVoteComment(apiResp)))
+}
+
+export function upVoteComment({ id }) {
+  return {
+    type: UP_VOTE_COMMENT,
+    id
+  };
+}
+
+// Down vote a comment
+
+export const decrementCommentVotes = commentID => dispatch => {
+  APIUtil
+    .decrementCommentVotes(commentID)
+    .then(apiResp => dispatch(downVoteComment(apiResp)))
+}
+
+export function downVoteComment({ id }) {
+  return {
+    type: DOWN_VOTE_COMMENT,
     id
   };
 }

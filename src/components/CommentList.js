@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchComments, deleteComment } from '../actions';
+import { fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../actions';
 import { Link } from 'react-router-dom';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
@@ -9,7 +9,7 @@ import './CommentList.css';
 class CommentList extends Component {
 
   componentDidMount() {
-    this.props.fetchComments(this.props.postID);
+    this.props.fetchComments(this.props.commentID);
   }
 
   composeComments() {
@@ -21,6 +21,17 @@ class CommentList extends Component {
 
   handleRemove(commentID) {
     this.props.removeComment(commentID);
+  }
+
+  handleVote(commentID, voteType) {
+    if (voteType === 'increment') {
+      this.props.upVotes(commentID);
+    }
+
+    if (voteType === 'decrement') {
+      this.props.downVotes(commentID);
+
+    }
   }
 
   render() {
@@ -45,8 +56,12 @@ class CommentList extends Component {
             { comments.map(comment =>
               <section key={comment.id}>
                 <div className="CommentList-comment-heading">
-                  <img src={IconArrowUp} alt="arrow up" />
-                  <img src={IconArrowDown} alt="arrow down" />
+                  <a role="button" onClick={() => this.handleVote(comment.id, 'increment')}>
+                    <img src={IconArrowUp} alt="arrow up" />
+                  </a>
+                  <a role="button" onClick={() => this.handleVote(comment.id, 'decrement')}>
+                    <img src={IconArrowDown} alt="arrow down" />
+                  </a>
                   {comment.voteScore} votes by poster 2 minutes ago |&nbsp;
                   <a role="button" onClick={() => this.handleRemove(comment.id)}>remove</a>
                   &nbsp;|&nbsp;
@@ -64,8 +79,10 @@ class CommentList extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchComments: postID => dispatch(fetchComments(postID)),
-    removeComment: postID => dispatch(deleteComment(postID))
+    upVote: commentID => dispatch(incrementCommentVotes(commentID)),
+    downVote: commentID => dispatch(decrementCommentVotes(commentID)),
+    fetchComments: commentID => dispatch(fetchComments(commentID)),
+    removeComment: commentID => dispatch(deleteComment(commentID))
   }
 }
 
