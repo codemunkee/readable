@@ -16,8 +16,9 @@ It uses React (surprise!) and Redux. There is a backend API in the project used 
 
 # Installation
 
-`yarn install`
-`yarn start`
+With npm, in the root directory:
+
+`npm install && cd ./api-server && npm install && cd .. && npm start`
 
 When you run `yarn start`, it'll bring up the front-end and back-end (API) simultaneously. The latter uses `nodemon`.
 
