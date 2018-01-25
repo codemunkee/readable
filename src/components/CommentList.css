@@ -28,3 +28,7 @@
   width: 14px;
   padding-right: 5px;
 }
+
+.CommentList a {
+  cursor: pointer;
+}

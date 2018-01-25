@@ -17,6 +17,8 @@ import {
   RECEIVE_COMMENTS,
   POST_COMMENT,
   ADD_COMMENT,
+  DELETE_COMMENT,
+  REMOVE_COMMENT,
   UPDATE_SORT,
 } from '../actions';
 
@@ -178,6 +180,16 @@ function comments(state = initCommentsState, action) {
         isFetching: false,
         items: action.comments
       }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        removingComment: true
+      }
+    case REMOVE_COMMENT:
+      const newState = Object.assign({}, state);
+      newState.removingComment = false;
+      delete newState.items[action.id];
+      return newState
     default:
       return state
   }

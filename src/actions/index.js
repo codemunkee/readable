@@ -13,6 +13,8 @@ export const DELETE_POST = 'DELETE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const POST_COMMENT = 'POST_COMMENT';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_SORT = 'UPDATE_SORT';
@@ -171,6 +173,25 @@ export function addComment(comment) {
   return {
     type: ADD_COMMENT,
     comment
+  };
+}
+
+// Delete a comment
+
+export const deleteComment = commentID => dispatch => {
+  dispatch({
+    type: DELETE_COMMENT
+  });
+
+  APIUtil
+    .removeComment(commentID)
+    .then(apiResp => dispatch(removeComment(apiResp.id)))
+}
+
+export function removeComment(id) {
+  return {
+    type: REMOVE_COMMENT,
+    id
   };
 }
 

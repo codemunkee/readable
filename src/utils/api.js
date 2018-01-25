@@ -193,3 +193,19 @@ export function postComment(commentData) {
       return {};
     });
 }
+
+export function removeComment(commentID) {
+  /* Remove a comment via the API */
+  
+  const init = Object.assign({}, stockInit, {'method': 'DELETE'});
+
+  return fetch('http://localhost:3001/comments/' + commentID, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to delete comment.', error);
+      return {};
+    });
+}

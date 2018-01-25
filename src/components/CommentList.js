@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchComments } from '../actions';
+import { fetchComments, deleteComment } from '../actions';
+import { Link } from 'react-router-dom';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
 import './CommentList.css';
@@ -16,6 +17,10 @@ class CommentList extends Component {
     let comments = Object.keys(this.props.comments.items).map(commentID =>
       this.props.comments.items[commentID])
     return comments;
+  }
+
+  handleRemove(commentID) {
+    this.props.removeComment(commentID);
   }
 
   render() {
@@ -42,7 +47,10 @@ class CommentList extends Component {
                 <div className="CommentList-comment-heading">
                   <img src={IconArrowUp} alt="arrow up" />
                   <img src={IconArrowDown} alt="arrow down" />
-                  {comment.voteScore} votes by poster 2 minutes ago | <span>remove</span>
+                  {comment.voteScore} votes by poster 2 minutes ago |&nbsp;
+                  <a role="button" onClick={() => this.handleRemove(comment.id)}>remove</a>
+                  &nbsp;|&nbsp;
+                  <Link to="/edit">edit</Link>
                 </div>
                 <p>{comment.body}</p>
               </section>
@@ -56,7 +64,8 @@ class CommentList extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchComments: postID => dispatch(fetchComments(postID))
+    fetchComments: postID => dispatch(fetchComments(postID)),
+    removeComment: postID => dispatch(deleteComment(postID))
   }
 }
 
