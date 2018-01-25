@@ -20,7 +20,9 @@ With npm, in the root directory:
 
 `npm install && cd ./api-server && npm install && cd .. && npm start`
 
-When you run `yarn start`, it'll bring up the front-end and back-end (API) simultaneously. The latter uses `nodemon`.
+When you run `npm start`, it'll bring up the front-end and back-end (API) simultaneously. The latter uses `nodemon`.
+
+You'll notice there are `yarn.lock` files in the repo. I personally find it to be a little quicker, so if you're inclined, just swap out `npm` with `yarn` in the above command and you'll be on your way.
 
 # Contributing
 
