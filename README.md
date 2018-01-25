@@ -14,6 +14,8 @@ This a project for Udacity's React Nanodegree. It provides the most basic functi
 
 It uses React (surprise!) and Redux. There is a backend API in the project used for storing post information, it doesn't do any sort of validationi beyond an authorization header but does persist post and comment information. We use react-thunk to handle the asyncronous API requests.
 
+In the interest of time I've humbly borrowed the design cues from (Hacker News)[https://news.ycombinator.com/], a site I find myself on too often.
+
 # Installation
 
 With npm, in the root directory:
