@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { postPost } from '../actions';
-import './PostSubmit.css';
+import './PostEdit.css';
 
-class PostSubmit extends Component {
+class PostEdit extends Component {
 
   state = {
     title: '',
@@ -30,11 +30,11 @@ class PostSubmit extends Component {
   render() {
     return (
       <div>
-      <form className="PostSubmit" onSubmit={this.handleSubmit} >
+      <form className="PostEdit" onSubmit={this.handleSubmit} >
         <fieldset>
 
           <label>title</label>
-          <input className="PostSubmit-title" name="title"
+          <input className="PostEdit-title" name="title"
                  type="text"
                  value={this.state.title}
                  onChange={this.handleChange} />
@@ -48,7 +48,7 @@ class PostSubmit extends Component {
           }
           </select>
 
-          <div className="PostSubmit-text">
+          <div className="PostEdit-text">
             <label>body</label>
             <textarea name="body"
                       value={this.state.body}
@@ -57,12 +57,12 @@ class PostSubmit extends Component {
           </div>
 
           <label>author</label>
-          <input className="PostSubmit-author" name="author"
+          <input className="PostEdit-author" name="author"
                  type="text"
                  value={this.state.author}
                  onChange={this.handleChange} />
         </fieldset>
-        <button className="PostSubmit-button"
+        <button className="PostEdit-button"
                 type="submit"
                 value="submit">Submit Post</button>
       </form>
@@ -87,4 +87,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostSubmit)
+)(PostEdit)

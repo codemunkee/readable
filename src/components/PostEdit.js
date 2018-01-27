@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { putPost, fetchPosts } from '../actions';
-import './PostSubmit.css';
+import './PostEdit.css';
 
 class PostEdit extends Component {
 
@@ -9,7 +10,8 @@ class PostEdit extends Component {
     id: '',
     title: '',
     body: '',
-    category: ''
+    category: '',
+    fireRedirect: false
   }
 
   componentWillReceiveProps(newProps) {
@@ -37,7 +39,7 @@ class PostEdit extends Component {
                          'title': this.state.title,
                          'category': this.state.category,
                          'body': this.state.body});
-    this.props.fetchPosts();
+    this.setState({fireRedirect: true, russ: 'oh hyea'})
   }
 
   render() {
@@ -57,10 +59,10 @@ class PostEdit extends Component {
       { !this.props.posts.isFetching &&
         !this.props.categories.isFetching &&
         post &&
-        <form className="PostSubmit" onSubmit={this.handleSubmit} >
+        <div>
+        <form className="PostEdit" onSubmit={this.handleSubmit} >
           <fieldset>
-
-            <label>title</label>
+            <label className="PostEdit-title">title</label>
             <input name="title"
                    type="text"
                    value={this.state.title}
@@ -77,7 +79,7 @@ class PostEdit extends Component {
             }
             </select>
 
-            <div className="PostSubmit-text">
+            <div className="PostEdit-text">
               <label>body</label>
               <textarea name="body"
                         value={this.state.body}
@@ -85,11 +87,15 @@ class PostEdit extends Component {
               <br/>
             </div>
           </fieldset>
-          <button className="PostSubmit-button"
+          <button className="PostEdit-button"
                   type="submit"
-                  value="submit">Submit
+                  value="submit">Update Post
           </button>
         </form>
+        {this.state.fireRedirect && (
+          <Redirect to={'/post/' + post.id}/>
+        )}
+        </div>
       }
       </div>
     )
