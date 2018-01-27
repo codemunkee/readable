@@ -62,7 +62,7 @@ class CommentList extends Component {
                 <a role="button" onClick={() => this.handleVote(comment.id, 'decrement')}>
                   <img src={IconArrowDown} alt="arrow down" />
                 </a>
-                {comment.voteScore} votes by poster 2 minutes ago |&nbsp;
+                {comment.voteScore} votes by {comment.author} 2 minutes ago |&nbsp;
                 <a role="button" onClick={() => this.handleRemove(comment.id)}>remove</a>
                 &nbsp;|&nbsp;
                 <Link to={'/post/' + this.props.postID + '/comment/' + comment.id + '/edit'}>edit</Link>
