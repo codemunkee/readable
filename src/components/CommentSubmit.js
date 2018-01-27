@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postComment } from '../actions';
+import { postComment, fetchPosts } from '../actions';
 import './CommentSubmit.css';
 
 class CommentSubmit extends Component {
@@ -19,6 +19,9 @@ class CommentSubmit extends Component {
     this.props.addComment({'body': this.state.body,
                            'author': this.state.author,
                            'parentId': this.props.postID});
+    // we do this to update the comment count listed on posts
+    // which is handled on the backend
+    this.props.fetchPosts();
   }
 
   render() {
@@ -53,6 +56,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     addComment: (data) => dispatch(postComment(data)),
+    fetchPosts: () => dispatch(fetchPosts())
   }
 }
 
