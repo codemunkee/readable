@@ -29,8 +29,8 @@ class CommentEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.editPost({'id': this.state.id,
-                         'body': this.state.body});
+    this.props.editComment({'id': this.state.id,
+                            'body': this.state.body});
     this.props.fetchComments();
   }
 

@@ -194,6 +194,27 @@ export function postComment(commentData) {
     });
 }
 
+export function putComment(commentData) {
+  /* Edit a comment through the API */
+  const payload = {
+    'body': commentData.body,
+  };
+
+  const init = Object.assign({}, stockInit,
+                             {'method': 'PUT',
+                              'body': JSON.stringify(payload)});
+
+  return fetch('http://localhost:3001/comments/' + commentData.id, init)
+    .then(resp => resp.json())
+    .then(resp => {
+      return resp;
+    })
+    .catch(error => {
+      console.log('Error: Unable to edit comment.', error);
+      return {};
+    });
+}
+
 export function removeComment(commentID) {
   /* Remove a comment via the API */
 

@@ -188,7 +188,7 @@ export const putComment = commentData => dispatch => {
   });
 
   APIUtil
-    .putPost(commentData)
+    .putComment(commentData)
     .then(commentData => dispatch(editComment(commentData)))
 }
 
