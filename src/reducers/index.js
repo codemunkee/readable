@@ -177,7 +177,6 @@ function comments(state = initCommentsState, action) {
         isFetching: true
       }
     case RECEIVE_COMMENTS:
-      console.log('ACTION', action)
       return {
         ...state,
         isFetching: false,
