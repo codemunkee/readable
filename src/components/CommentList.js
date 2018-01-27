@@ -35,45 +35,45 @@ class CommentList extends Component {
   }
 
   render() {
-    if (this.props.comments.isFetching) {
-      return (
+    const comments = this.composeComments();
+    return (
+      <div>
+      { this.props.isFetching &&
         <div className="CommentList">
           <h2>Fetching Comments</h2>
         </div>
-      )
-    } else {
-      if (Object.keys(this.props.comments.items).length === 0) {
-        return (
-          <div className="CommentList">
-            <h2>No Comments Found</h2>
-          </div>
-        )
-      } else {
-        const comments = this.composeComments();
-        return (
-          <div className="CommentList">
-            <h2>Comments</h2>
-            { comments.map(comment =>
-              <section key={comment.id}>
-                <div className="CommentList-comment-heading">
-                  <a role="button" onClick={() => this.handleVote(comment.id, 'increment')}>
-                    <img src={IconArrowUp} alt="arrow up" />
-                  </a>
-                  <a role="button" onClick={() => this.handleVote(comment.id, 'decrement')}>
-                    <img src={IconArrowDown} alt="arrow down" />
-                  </a>
-                  {comment.voteScore} votes by poster 2 minutes ago |&nbsp;
-                  <a role="button" onClick={() => this.handleRemove(comment.id)}>remove</a>
-                  &nbsp;|&nbsp;
-                  <Link to={'/post/' + this.props.postID + '/comment/' + comment.id + '/edit'}>edit</Link>
-                </div>
-                <p>{comment.body}</p>
-              </section>
-            )}
-          </div>
-        )
       }
-    }
+      { !this.props.isFetching &&
+        !this.comments &&
+        <div className="CommentList">
+          <h2>No Comments Found</h2>
+        </div>
+      }
+
+      { (comments.length > 0) &&
+        <div className="CommentList">
+          <h2>Comments</h2>
+          { comments.map(comment =>
+            <section key={comment.id}>
+              <div className="CommentList-comment-heading">
+                <a role="button" onClick={() => this.handleVote(comment.id, 'increment')}>
+                  <img src={IconArrowUp} alt="arrow up" />
+                </a>
+                <a role="button" onClick={() => this.handleVote(comment.id, 'decrement')}>
+                  <img src={IconArrowDown} alt="arrow down" />
+                </a>
+                {comment.voteScore} votes by poster 2 minutes ago |&nbsp;
+                <a role="button" onClick={() => this.handleRemove(comment.id)}>remove</a>
+                &nbsp;|&nbsp;
+                <Link to={'/post/' + this.props.postID + '/comment/' + comment.id + '/edit'}>edit</Link>
+              </div>
+              <p>{comment.body}</p>
+            </section>
+          )}
+       </div>
+      }
+      </div>
+    )
   }
 }
 
