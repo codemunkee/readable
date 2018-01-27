@@ -4,13 +4,7 @@
 }
 
 .CommentEdit fieldset {
-  padding-left: 0;
   border: 0;
-}
-
-.CommentEdit input {
-  height: 15px;
-  width: 375px;
 }
 
 .CommentEdit-text {
@@ -21,4 +15,8 @@
   margin-top: 8px;
   height: 60px;
   width: 375px;
+}
+
+.CommentEdit-button {
+  margin-left: 12px;
 }

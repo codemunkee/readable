@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { putComment, fetchComments } from '../actions';
 import './CommentEdit.css';
 
@@ -35,6 +36,7 @@ class CommentEdit extends Component {
 
   render() {
     const comment = this.props.comments.items[this.props.match.params.commentid];
+    const parentPost = this.props.posts.items[this.props.match.params.postid];
     return (
       <div>
       { this.props.comments.isFetching &&
@@ -46,19 +48,19 @@ class CommentEdit extends Component {
 
       { !this.props.comments.isFetching &&
         comment &&
-        <form className="CommentSubmit" onSubmit={this.handleSubmit} >
+        <form className="CommentEdit" onSubmit={this.handleSubmit} >
           <fieldset>
-            <div className="CommentSubmit-text">
-              <label>body</label>
+            <Link to={'/post/' + parentPost.id}>{parentPost.title}</Link> 
+            <div className="CommentEdit-text">
               <textarea name="body"
                         value={this.state.body}
                         onChange={this.handleChange} />
               <br/>
             </div>
           </fieldset>
-          <button className="CommentSubmit-button"
+          <button className="CommentEdit-button"
                   type="submit"
-                  value="submit">Submit
+                  value="submit">Edit Comment
           </button>
         </form>
       }
