@@ -173,7 +173,7 @@ export function postComment(commentData) {
   const payload = {
     'body': commentData.body,
     'parentId': commentData.parentId,
-    'author': comment.author,
+    'author': commentData.author,
     'voteScore': 1
   };
 

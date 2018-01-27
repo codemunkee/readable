@@ -10,7 +10,15 @@
 
 .CommentSubmit input {
   height: 15px;
-  width: 375px;
+  width: 150px;
+}
+
+.CommentSubmit label {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 13px;
+  width: 30px;
 }
 
 .CommentSubmit-text {
@@ -21,4 +29,8 @@
   margin-top: 8px;
   height: 60px;
   width: 375px;
+}
+
+.CommentSubmit button {
+  margin-left: 25px;
 }

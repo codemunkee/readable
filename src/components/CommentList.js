@@ -39,12 +39,13 @@ class CommentList extends Component {
     return (
       <div>
       { this.props.isFetching &&
+        !comments &&
         <div className="CommentList">
           <h2>Fetching Comments</h2>
         </div>
       }
       { !this.props.isFetching &&
-        !this.comments &&
+        comments.length === 0 &&
         <div className="CommentList">
           <h2>No Comments Found</h2>
         </div>

@@ -7,6 +7,7 @@ class CommentSubmit extends Component {
 
   state = {
     body: '',
+    author: ''
   }
 
   handleChange = event => {
@@ -16,6 +17,7 @@ class CommentSubmit extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.addComment({'body': this.state.body,
+                           'author': this.state.author,
                            'parentId': this.props.postID});
   }
 
@@ -30,8 +32,14 @@ class CommentSubmit extends Component {
                       onChange={this.handleChange} />
             <br/>
           </div>
+          <label>author</label>
+          <input name="author"
+                 type="text"
+                 value={this.state.author}
+                 onChange={this.handleChange} />
+          <button className="CommentSubmit-button"
+                  type="submit" value="submit">add comment</button>
         </fieldset>
-        <button className="CommentSubmit-button" type="submit" value="submit">add comment</button>
       </form>
     )
   }
