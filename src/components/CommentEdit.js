@@ -18,7 +18,6 @@ class CommentEdit extends Component {
   }
 
   componentDidMount() {
-    console.log('PROPS', this.props)
     this.props.fetchComments(this.props.match.params.postid);
   }
 
@@ -31,7 +30,7 @@ class CommentEdit extends Component {
     event.preventDefault();
     this.props.editComment({'id': this.state.id,
                             'body': this.state.body});
-    this.props.fetchComments();
+    this.props.fetchComments(this.props.match.params.postid);
   }
 
   render() {
