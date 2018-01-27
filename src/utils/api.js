@@ -49,7 +49,7 @@ export function postPost(postData) {
     'title': postData.title,
     'timestamp': 234,
     'body': postData.body,
-    'author': 'russ',
+    'author': postData.author,
     'category': postData.category,
     'voteScore': 1
   };

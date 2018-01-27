@@ -54,7 +54,7 @@ class PostView extends Component {
                 {post.title}
               </span>
               <div className="PostView-subtitle">
-                <span>{post.voteScore} votes by poster {humanTime}</span>
+                <span>{post.voteScore} votes by {post.author} {humanTime}</span>
                 <Link to={'/post/' + postID + '/edit'}> edit</Link>
                  &nbsp;|&nbsp;
                 <a role="button" onClick={this.handleRemove}>remove</a>
