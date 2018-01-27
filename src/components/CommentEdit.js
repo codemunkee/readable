@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { putComment, fetchComments } from '../actions';
-import './CommentSubmit.css';
+import './CommentEdit.css';
 
 class CommentEdit extends Component {
 
@@ -48,7 +48,6 @@ class CommentEdit extends Component {
         comment &&
         <form className="CommentSubmit" onSubmit={this.handleSubmit} >
           <fieldset>
-
             <div className="CommentSubmit-text">
               <label>body</label>
               <textarea name="body"
