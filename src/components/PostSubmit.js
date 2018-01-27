@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { postPost } from '../actions';
 import './PostSubmit.css';
 
@@ -10,6 +11,7 @@ class PostSubmit extends Component {
     body: '',
     category: '',
     author: '',
+    fireRedirect: false
   }
 
   handleChange = event => {
@@ -22,10 +24,12 @@ class PostSubmit extends Component {
                         'category': this.state.category,
                         'body': this.state.body,
                         'author': this.state.author })
+    this.setState({ fireRedirect: true });
   }
 
   render() {
     return (
+      <div>
       <form className="PostSubmit" onSubmit={this.handleSubmit} >
         <fieldset>
 
@@ -62,6 +66,10 @@ class PostSubmit extends Component {
                 type="submit"
                 value="submit">Submit Post</button>
       </form>
+      {this.state.fireRedirect && (
+        <Redirect to='/'/>
+      )}
+      </div>
     )
   }
 }
