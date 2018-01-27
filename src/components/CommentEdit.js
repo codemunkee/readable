@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { putComment, fetchComments } from '../actions';
 import './CommentEdit.css';
 
@@ -9,6 +9,7 @@ class CommentEdit extends Component {
   state = {
     id: '',
     body: '',
+    fireRedirect: false
   }
 
   componentWillReceiveProps(newProps) {
@@ -31,7 +32,7 @@ class CommentEdit extends Component {
     event.preventDefault();
     this.props.editComment({'id': this.state.id,
                             'body': this.state.body});
-    this.props.fetchComments(this.props.match.params.postid);
+    this.setState({fireRedirect: true});
   }
 
   render() {
@@ -48,9 +49,10 @@ class CommentEdit extends Component {
 
       { !this.props.comments.isFetching &&
         comment &&
+        <div>
         <form className="CommentEdit" onSubmit={this.handleSubmit} >
           <fieldset>
-            <Link to={'/post/' + parentPost.id}>{parentPost.title}</Link> 
+            <Link to={'/post/' + parentPost.id}>{parentPost.title}</Link>
             <div className="CommentEdit-text">
               <textarea name="body"
                         value={this.state.body}
@@ -63,6 +65,8 @@ class CommentEdit extends Component {
                   value="submit">Edit Comment
           </button>
         </form>
+        { this.state.fireRedirect && <Redirect to={'/post/' + parentPost.id} />}
+        </div>
       }
       </div>
     )
