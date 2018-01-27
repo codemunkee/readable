@@ -8,7 +8,8 @@ class PostSubmit extends Component {
   state = {
     title: '',
     body: '',
-    category: ''
+    category: '',
+    author: '',
   }
 
   handleChange = event => {
@@ -19,7 +20,8 @@ class PostSubmit extends Component {
     event.preventDefault();
     this.props.addPost({'title': this.state.title,
                         'category': this.state.category,
-                        'body': this.state.body})
+                        'body': this.state.body,
+                        'author': this.state.author })
   }
 
   render() {
@@ -28,7 +30,7 @@ class PostSubmit extends Component {
         <fieldset>
 
           <label>title</label>
-          <input name="title"
+          <input className="PostSubmit-title" name="title"
                  type="text"
                  value={this.state.title}
                  onChange={this.handleChange} />
@@ -49,8 +51,16 @@ class PostSubmit extends Component {
                       onChange={this.handleChange} />
             <br/>
           </div>
+
+          <label>author</label>
+          <input className="PostSubmit-author" name="author"
+                 type="text"
+                 value={this.state.author}
+                 onChange={this.handleChange} />
         </fieldset>
-        <button className="PostSubmit-button" type="submit" value="submit">Submit</button>
+        <button className="PostSubmit-button"
+                type="submit"
+                value="submit">Submit Post</button>
       </form>
     )
   }

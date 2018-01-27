@@ -15,9 +15,14 @@
   width: 30px;
 }
 
-.PostSubmit input {
+.PostSubmit-title {
   height: 15px;
   width: 375px;
+}
+
+.PostSubmit-author {
+  height: 15px;
+  width: 200px;
 }
 
 .PostSubmit p {
@@ -42,5 +47,5 @@
 }
 
 .PostSubmit-button {
-  margin-left: 58px;
+  margin-left: 80px;
 }
