@@ -47,7 +47,6 @@ export function postPost(postData) {
   /* Post a new post to the API */
   const payload = {
     'title': postData.title,
-    'timestamp': 234,
     'body': postData.body,
     'author': postData.author,
     'category': postData.category,
@@ -172,10 +171,9 @@ export function fetchComments(postID) {
 export function postComment(commentData) {
   /* Post a new post to the API */
   const payload = {
-    'timestamp': 234,
     'body': commentData.body,
     'parentId': commentData.parentId,
-    'author': 'russ',
+    'author': comment.author,
     'voteScore': 1
   };
 
