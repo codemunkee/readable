@@ -47,7 +47,11 @@ function PostView(props) {
               <span>{post.voteScore} votes by {post.author} {humanTime}</span>
               <Link to={`/post/${postID}/edit`}> edit</Link>
                &nbsp;|&nbsp;
-              <button onClick={() => props.removePost(post.id)}>remove</button>
+              <button
+                className="PostView-button"
+                onClick={() => props.removePost(post.id)}
+              >remove
+              </button>
             </div>
           </div>
           <div className="PostView-body">

@@ -51,15 +51,15 @@ class PostList extends Component {
   numberPosts(posts) {
     // add numbers to the posts
     for (let i = 0; i < posts.length; i++) {
-      posts[i] = { ...posts[i], 'number': i + 1 }
+      posts[i] = { ...posts[i], number: i + 1 };
     }
     return posts;
   }
 
   render() {
     const posts = (Object.keys(this.props.posts.items).length > 0)
-                    ? this.composePosts()
-                    : [];
+      ? this.composePosts()
+      : [];
 
     return (
       <div className="PostList">
@@ -77,7 +77,7 @@ class PostList extends Component {
             }
           </div> }
       </div>
-      )
+    );
   }
 }
 
@@ -88,10 +88,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-  }
+  };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(PostList)
+  mapDispatchToProps,
+)(PostList);

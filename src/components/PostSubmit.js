@@ -12,7 +12,7 @@ class PostSubmit extends Component {
     category: '',
     author: '',
     fireRedirect: false
-  }
+  };
 
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value});

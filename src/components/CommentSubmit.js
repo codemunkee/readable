@@ -8,7 +8,7 @@ class CommentSubmit extends Component {
   state = {
     body: '',
     author: ''
-  }
+  };
 
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value});
