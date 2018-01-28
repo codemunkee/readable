@@ -62,7 +62,7 @@ class PostList extends Component {
                     : [];
 
     return (
-      <div>
+      <div className="PostList">
         { this.props.posts.isFetching &&
           <h1>Fetching Posts</h1> }
 

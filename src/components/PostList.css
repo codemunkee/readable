@@ -2,3 +2,8 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.PostList h1 {
+  margin-left: 10px;
+  font-size: 15px;
+}
