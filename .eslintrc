@@ -2,5 +2,9 @@
  "env": {
     browser: true
   },
- "extends": "airbnb"
+ "extends": "airbnb",
+ "rules": {
+   "react/jsx-filename-extension": "off",
+   "no-underscore-dangle": "off",
+ }
 }
