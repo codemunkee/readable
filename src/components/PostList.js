@@ -57,17 +57,27 @@ class PostList extends Component {
   }
 
   render() {
-    if (this.props.posts.isFetching) {
-      return (<h1>Fetching</h1>)
-    } else {
-      return (
-        <div className="PostList">
-          { this.composePosts().map(post =>
-            <PostInfo key={post.id} post={post} />)
-          }
-        </div>
+    const posts = (Object.keys(this.props.posts.items).length > 0)
+                    ? this.composePosts()
+                    : [];
+
+    return (
+      <div>
+        { this.props.posts.isFetching &&
+          <h1>Fetching Posts</h1> }
+
+        { !this.props.posts.isFetching &&
+          posts.length === 0 &&
+          <h1>No Posts Found - maybe submit one?</h1> }
+
+        { !this.props.posts.isFetching &&
+          <div className="PostList">
+            { posts.map(post =>
+              <PostInfo key={post.id} post={post} />)
+            }
+          </div> }
+      </div>
       )
-    }
   }
 }
 
