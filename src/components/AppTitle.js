@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import IconR from './IconR.svg';
 
 /* Shows the Icon and the Title of each page */
@@ -17,7 +16,3 @@ export default function AppTitle(props) {
     </div>
   )
 }
-
-AppTitle.propTypes = {
-  name: PropTypes.string
-};
