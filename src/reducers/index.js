@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import {
   FETCH_CATEGORIES,
   RECEIVE_CATEGORIES,
@@ -24,28 +23,29 @@ import {
   UPDATE_SORT,
 } from '../actions';
 
+/* eslint no-param-reassign: 0 */
+/* eslint no-case-declarations: 0 */
+/* eslint no-return-assign: 0 */
+
 // CATEGORIES
 
-const initCategoriesState = {
-  isFetching: false,
-  items: []
-}
+const initCategoriesState = { isFetching: false, items: [] };
 
 function categories(state = initCategoriesState, action) {
   switch (action.type) {
     case FETCH_CATEGORIES:
       return {
         ...state,
-        isFetching: true
-      }
+        isFetching: true,
+      };
     case RECEIVE_CATEGORIES:
       return {
         ...state,
         isFetching: false,
-        items: action.categories
-      }
+        items: action.categories,
+      };
     default:
-      return state
+      return state;
   }
 }
 
@@ -56,29 +56,29 @@ const initPostsState = {
   postingPost: false,
   removingPost: false,
   invalidReq: false,
-  items: {}
-}
+  items: {},
+};
 
 function posts(state = initPostsState, action) {
-  const { id } = action
+  const { id } = action;
 
   switch (action.type) {
     case FETCH_POSTS:
       return {
         ...state,
-        isFetching: true
-      }
+        isFetching: true,
+      };
     case RECEIVE_POSTS:
       return {
         ...state,
         isFetching: false,
-        items: action.posts
-      }
+        items: action.posts,
+      };
     case POST_POST:
       return {
         ...state,
-        postingPost: true
-      }
+        postingPost: true,
+      };
     case ADD_POST:
       return {
         ...state,
@@ -86,15 +86,15 @@ function posts(state = initPostsState, action) {
         items: {
           ...state.items,
           [action.post.id]: {
-            ...action.post
-          }
-        }
-      }
+            ...action.post,
+          },
+        },
+      };
     case PUT_POST:
       return {
         ...state,
-        postingPost: true
-      }
+        postingPost: true,
+      };
     case EDIT_POST:
       return {
         ...state,
@@ -102,20 +102,20 @@ function posts(state = initPostsState, action) {
         items: {
           ...state.items,
           [action.post.id]: {
-            ...action.post
-          }
-        }
-      }
+            ...action.post,
+          },
+        },
+      };
     case DELETE_POST:
       return {
         ...state,
-        removingPost: true
-      }
+        removingPost: true,
+      };
     case REMOVE_POST:
       const newState = Object.assign({}, state);
       newState.removingPost = false;
       delete newState.items[id];
-      return newState
+      return newState;
     case UP_VOTE_POST:
       return {
         ...state,
@@ -123,10 +123,10 @@ function posts(state = initPostsState, action) {
           ...state.items,
           [id]: {
             ...state.items[id],
-            voteScore: state.items[id].voteScore += 1
-          }
-        }
-      }
+            voteScore: state.items[id].voteScore += 1,
+          },
+        },
+      };
     case DOWN_VOTE_POST:
       return {
         ...state,
@@ -134,12 +134,12 @@ function posts(state = initPostsState, action) {
           ...state.items,
           [id]: {
             ...state.items[id],
-            voteScore: state.items[id].voteScore -= 1
-          }
-        }
-      }
-    default :
-      return state
+            voteScore: state.items[id].voteScore -= 1,
+          },
+        },
+      };
+    default:
+      return state;
   }
 }
 
@@ -150,16 +150,16 @@ const initCommentsState = {
   postingComment: false,
   removingComment: false,
   invalidReq: false,
-  items: {}
-}
+  items: {},
+};
 
 function comments(state = initCommentsState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case POST_COMMENT:
       return {
         ...state,
-        postingComment: true
-      }
+        postingComment: true,
+      };
     case ADD_COMMENT:
       return {
         ...state,
@@ -167,72 +167,70 @@ function comments(state = initCommentsState, action) {
         items: {
           ...state.items,
           [action.comment.id]: {
-            ...action.comment
-          }
-        }
-      }
+            ...action.comment,
+          },
+        },
+      };
     case FETCH_COMMENTS:
       return {
         ...state,
-        isFetching: true
-      }
+        isFetching: true,
+      };
     case RECEIVE_COMMENTS:
       return {
         ...state,
         isFetching: false,
-        items: action.comments
-      }
+        items: action.comments,
+      };
     case DELETE_COMMENT:
       return {
         ...state,
-        removingComment: true
-      }
+        removingComment: true,
+      };
     case REMOVE_COMMENT:
       const newState = Object.assign({}, state);
       newState.removingComment = false;
       delete newState.items[action.id];
-      return newState
+      return newState;
     case UP_VOTE_COMMENT:
       return {
         ...state,
-          items: {
-            ...state.items,
-            [action.id]: {
-              ...state.items[action.id],
-              voteScore: state.items[action.id].voteScore += 1
-            }
-          }
-        }
-      case DOWN_VOTE_COMMENT:
-        return {
-          ...state,
-          items: {
-            ...state.items,
-            [action.id]: {
-              ...state.items[action.id],
-              voteScore: state.items[action.id].voteScore -= 1
-            }
-          }
-        }
+        items: {
+          ...state.items,
+          [action.id]: {
+            ...state.items[action.id],
+            voteScore: state.items[action.id].voteScore += 1,
+          },
+        },
+      };
+    case DOWN_VOTE_COMMENT:
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [action.id]: {
+            ...state.items[action.id],
+            voteScore: state.items[action.id].voteScore -= 1,
+          },
+        },
+      };
     default:
-      return state
+      return state;
   }
 }
 
 // SORT STYLE
 
-const initSortState = {
-  sortSetting: 'dateDesc'
-}
+const initSortState = { sortSetting: 'dateDesc' };
 
 function sortSettings(state = initSortState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case UPDATE_SORT:
       return {
-        sortSetting: action.sortType
-      }
-      default:
-        return state
+        sortSetting: action.sortType,
+      };
+    default:
+      return state;
   }
 }
 
@@ -240,5 +238,5 @@ export default combineReducers({
   posts,
   categories,
   comments,
-  sortSettings
-})
+  sortSettings,
+});
