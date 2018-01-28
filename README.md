@@ -26,6 +26,10 @@ When you run `npm start`, it'll bring up the front-end and back-end (API) simult
 
 You'll notice there are `yarn.lock` files in the repo. I personally find it to be a little quicker, so if you're inclined, just swap out `npm` with `yarn` in the above command and you'll be on your way.
 
+By and large I've tried to follow the [Airbnb Style Guide](https://github.com/airbnb/javascript). This is facilitated by `eslint`; there are a few exceptions made but otherwise you can check with:
+
+`npm run lint`
+
 # Contributing
 
 Submit a PR. :-)
