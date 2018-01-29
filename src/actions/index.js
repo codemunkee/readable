@@ -1,4 +1,5 @@
 import * as APIUtil from '../utils/api';
+
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const FETCH_POSTS = 'FETCH_POSTS';
@@ -25,234 +26,234 @@ export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
 
 // Retreive Categories
 
-export const fetchCategories = () => dispatch => {
+export const receiveCategories = categories => ({
+  type: RECEIVE_CATEGORIES,
+  categories,
+});
+
+export const fetchCategories = () => (dispatch) => {
   dispatch({
-    type: FETCH_CATEGORIES
+    type: FETCH_CATEGORIES,
   });
 
   APIUtil
     .fetchCategories()
-    .then(categories => dispatch(receiveCategories(categories)))
-}
-
-export const receiveCategories = categories => ({
-  type: RECEIVE_CATEGORIES,
-  categories
-});
+    .then(categories => dispatch(receiveCategories(categories)));
+};
 
 // Retrieve all posts
 
-export const fetchPosts = () => dispatch => {
+export const receivePosts = posts => ({
+  type: RECEIVE_POSTS,
+  posts,
+});
+
+export const fetchPosts = () => (dispatch) => {
   dispatch({
-    type: FETCH_POSTS
+    type: FETCH_POSTS,
   });
 
   APIUtil
     .fetchPosts()
-    .then(posts => dispatch(receivePosts(posts)))
-}
-
-export const receivePosts = posts => ({
-  type: RECEIVE_POSTS,
-  posts
-});
+    .then(posts => dispatch(receivePosts(posts)));
+};
 
 // Add a new post
-
-export const postPost = postData => dispatch => {
-  dispatch({
-    type: POST_POST
-  });
-
-  APIUtil
-    .postPost(postData)
-    .then(postData => dispatch(addPost(postData)))
-}
 
 export function addPost(post) {
   return {
     type: ADD_POST,
-    post
+    post,
   };
 }
 
-// Edit an existing post
-
-export const putPost = postData => dispatch => {
+export const postPost = postData => (dispatch) => {
   dispatch({
-    type: PUT_POST
+    type: POST_POST,
   });
 
   APIUtil
-    .putPost(postData)
-    .then(postData => dispatch(editPost(postData)))
-}
+    .postPost(postData)
+    .then(apiResp => dispatch(addPost(apiResp)));
+};
+
+// Edit an existing post
 
 export function editPost(post) {
   return {
     type: EDIT_POST,
-    post
+    post,
   };
 }
 
-// Up vote a post
+export const putPost = postData => (dispatch) => {
+  dispatch({
+    type: PUT_POST,
+  });
 
-export const incrementPostVotes = postID => dispatch => {
   APIUtil
-    .incrementPostVotes(postID)
-    .then(apiResp => dispatch(upVotePost(apiResp)))
-}
+    .putPost(postData)
+    .then(apiResp => dispatch(editPost(apiResp)));
+};
+
+// Up vote a post
 
 export function upVotePost({ id }) {
   return {
     type: UP_VOTE_POST,
-    id
+    id,
   };
 }
 
-// Down vote a post
-
-export const decrementPostVotes = postID => dispatch => {
+export const incrementPostVotes = postID => (dispatch) => {
   APIUtil
-    .decrementPostVotes(postID)
-    .then(apiResp => dispatch(downVotePost(apiResp)))
-}
+    .incrementPostVotes(postID)
+    .then(apiResp => dispatch(upVotePost(apiResp)));
+};
+
+// Down vote a post
 
 export function downVotePost({ id }) {
   return {
     type: DOWN_VOTE_POST,
-    id
+    id,
   };
 }
 
-// Delete a post
-
-export const deletePost = postID => dispatch => {
-  dispatch({
-    type: DELETE_POST
-  });
-
+export const decrementPostVotes = postID => (dispatch) => {
   APIUtil
-    .removePost(postID)
-    .then(apiResp => dispatch(removePost(apiResp.id)))
-}
+    .decrementPostVotes(postID)
+    .then(apiResp => dispatch(downVotePost(apiResp)));
+};
+
+// Delete a post
 
 export function removePost(id) {
   return {
     type: REMOVE_POST,
-    id
+    id,
   };
 }
 
+export const deletePost = postID => (dispatch) => {
+  dispatch({
+    type: DELETE_POST,
+  });
+
+  APIUtil
+    .removePost(postID)
+    .then(apiResp => dispatch(removePost(apiResp.id)));
+};
+
 // Retrieve all comments for a post
 
-export const fetchComments = postID => dispatch => {
+export const receiveComments = comments => ({
+  type: RECEIVE_COMMENTS,
+  comments,
+});
+
+export const fetchComments = postID => (dispatch) => {
   dispatch({
-    type: FETCH_COMMENTS
+    type: FETCH_COMMENTS,
   });
 
   APIUtil
     .fetchComments(postID)
-    .then(comments => dispatch(receiveComments(comments)))
-}
-
-export const receiveComments = comments => ({
-  type: RECEIVE_COMMENTS,
-  comments
-});
+    .then(comments => dispatch(receiveComments(comments)));
+};
 
 // Add a new comment
-
-export const postComment = commentData => dispatch => {
-  dispatch({
-    type: POST_COMMENT
-  });
-
-  APIUtil
-    .postComment(commentData)
-    .then(commentData => dispatch(addComment(commentData)))
-}
 
 export function addComment(comment) {
   return {
     type: ADD_COMMENT,
-    comment
+    comment,
   };
 }
 
-// Edit an existing comment
-
-export const putComment = commentData => dispatch => {
+export const postComment = commentData => (dispatch) => {
   dispatch({
-    type: PUT_COMMENT
+    type: POST_COMMENT,
   });
 
   APIUtil
-    .putComment(commentData)
-    .then(commentData => dispatch(editComment(commentData)))
-}
+    .postComment(commentData)
+    .then(apiResp => dispatch(addComment(apiResp)));
+};
+
+// Edit an existing comment
 
 export function editComment(comment) {
   return {
     type: EDIT_COMMENT,
-    comment
+    comment,
   };
 }
 
-// Delete a comment
-
-export const deleteComment = commentID => dispatch => {
+export const putComment = commentData => (dispatch) => {
   dispatch({
-    type: DELETE_COMMENT
+    type: PUT_COMMENT,
   });
 
   APIUtil
-    .removeComment(commentID)
-    .then(apiResp => dispatch(removeComment(apiResp.id)))
-}
+    .putComment(commentData)
+    .then(apiResp => dispatch(editComment(apiResp)));
+};
+
+// Delete a comment
 
 export function removeComment(id) {
   return {
     type: REMOVE_COMMENT,
-    id
+    id,
   };
 }
 
-// Up vote a comment
+export const deleteComment = commentID => (dispatch) => {
+  dispatch({
+    type: DELETE_COMMENT,
+  });
 
-export const incrementCommentVotes = commentID => dispatch => {
   APIUtil
-    .incrementCommentVotes(commentID)
-    .then(apiResp => dispatch(upVoteComment(apiResp)))
-}
+    .removeComment(commentID)
+    .then(apiResp => dispatch(removeComment(apiResp.id)));
+};
+
+// Up vote a comment
 
 export function upVoteComment({ id }) {
   return {
     type: UP_VOTE_COMMENT,
-    id
+    id,
   };
 }
 
-// Down vote a comment
-
-export const decrementCommentVotes = commentID => dispatch => {
+export const incrementCommentVotes = commentID => (dispatch) => {
   APIUtil
-    .decrementCommentVotes(commentID)
-    .then(apiResp => dispatch(downVoteComment(apiResp)))
-}
+    .incrementCommentVotes(commentID)
+    .then(apiResp => dispatch(upVoteComment(apiResp)));
+};
+
+// Down vote a comment
 
 export function downVoteComment({ id }) {
   return {
     type: DOWN_VOTE_COMMENT,
-    id
+    id,
   };
 }
 
+export const decrementCommentVotes = commentID => (dispatch) => {
+  APIUtil
+    .decrementCommentVotes(commentID)
+    .then(apiResp => dispatch(downVoteComment(apiResp)));
+};
+
 // Update sort settings
 
-export function updateSort(sortType){
+export function updateSort(sortType) {
   return {
     type: UPDATE_SORT,
-    sortType
+    sortType,
   };
 }
