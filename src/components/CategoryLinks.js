@@ -1,27 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './CategoryLinks.css';
 
-class CategoryLinks extends Component {
-  render() {
-    return (
-      <div className="CategoryLinks">
-        { this.props.categories.items.map(item =>
-           <Link key={item.name}
-                 to={'/category/' + item.path}>
-                 { ' | ' + item.name }
-           </Link>
-        )}
-      </div>
-    )
-  }
+function CategoryLinks(props) {
+  return (
+    <div className="CategoryLinks">
+      { props.categories.items.map(item =>
+        (
+          <Link
+            key={item.name}
+            to={`/category/${item.path}`}
+          >
+            { ` | ${item.name}` }
+          </Link>))
+      }
+    </div>);
 }
 
-function mapStateToProps({categories}) {
+function mapStateToProps({ categories }) {
   return { categories };
 }
 
-export default connect(
-  mapStateToProps
-)(CategoryLinks)
+export default connect(mapStateToProps)(CategoryLinks);
