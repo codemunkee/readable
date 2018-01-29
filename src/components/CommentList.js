@@ -1,26 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../actions';
 import { Link } from 'react-router-dom';
+import { fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../actions';
 import IconArrowUp from './IconArrowUp.svg';
 import IconArrowDown from './IconArrowDown.svg';
 import './CommentList.css';
 
 class CommentList extends Component {
-
   componentDidMount() {
     this.props.fetchComments(this.props.postID);
-  }
-
-  composeComments() {
-    // parse comments so that they're more easily presented in the view
-    let comments = Object.keys(this.props.comments.items).map(commentID =>
-      this.props.comments.items[commentID])
-    return comments;
-  }
-
-  handleRemove(commentID) {
-    this.props.removeComment(commentID);
   }
 
   handleVote(commentID, voteType) {
@@ -30,31 +18,31 @@ class CommentList extends Component {
 
     if (voteType === 'decrement') {
       this.props.downVote(commentID);
-
     }
   }
 
   render() {
-    const comments = this.composeComments();
+    const comments = Object.keys(this.props.comments.items).map(commentID =>
+      this.props.comments.items[commentID]);
     return (
       <div>
-      { this.props.isFetching &&
-        !comments &&
-        <div className="CommentList">
-          <h2>Fetching Comments</h2>
-        </div>
-      }
-      { !this.props.isFetching &&
-        comments.length === 0 &&
-        <div className="CommentList">
-          <h2>No Comments Found</h2>
-        </div>
-      }
+        { this.props.isFetching &&
+          !comments &&
+          <div className="CommentList">
+            <h2>Fetching Comments</h2>
+          </div>
+        }
+        { !this.props.isFetching &&
+          comments.length === 0 &&
+          <div className="CommentList">
+            <h2>No Comments Found</h2>
+          </div>
+        }
 
-      { (comments.length > 0) &&
+        { (comments.length > 0) &&
         <div className="CommentList">
           <h2>Comments</h2>
-          { comments.map(comment =>
+          { comments.map(comment => (
             <section key={comment.id}>
               <div className="CommentList-comment-heading">
                 <a role="button" onClick={() => this.handleVote(comment.id, 'increment')}>
@@ -64,17 +52,17 @@ class CommentList extends Component {
                   <img src={IconArrowDown} alt="arrow down" />
                 </a>
                 {comment.voteScore} votes by {comment.author} {comment.timestamp}|&nbsp;
-                <Link to={'/post/' + this.props.postID + '/comment/' + comment.id + '/edit'}>edit</Link>
+                <Link to={`/post/${this.props.postID}/comment/${comment.id}/edit`}>edit</Link>
                 &nbsp;|&nbsp;
-                <a role="button" onClick={() => this.handleRemove(comment.id)}>remove</a>
+                <a role="button" onClick={() => this.props.removeComment(comment.id)}>remove</a>
               </div>
               <p>{comment.body}</p>
-            </section>
-          )}
-       </div>
+            </section>))
+        }
+        </div>
       }
       </div>
-    )
+    );
   }
 }
 
@@ -83,15 +71,15 @@ function mapDispatchToProps(dispatch) {
     upVote: commentID => dispatch(incrementCommentVotes(commentID)),
     downVote: commentID => dispatch(decrementCommentVotes(commentID)),
     fetchComments: postID => dispatch(fetchComments(postID)),
-    removeComment: commentID => dispatch(deleteComment(commentID))
-  }
+    removeComment: commentID => dispatch(deleteComment(commentID)),
+  };
 }
 
 function mapStateToProps(state) {
-  return state
+  return state;
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(CommentList)
+  mapDispatchToProps,
+)(CommentList);
