@@ -6,6 +6,30 @@ import './PostList.css';
 
 
 class PostList extends Component {
+  static numberPosts(posts) {
+    // add numbers to the posts
+    const numberedPosts = posts.map((post, index) => ({ ...post, number: index + 1 }));
+    return numberedPosts;
+  }
+
+  static sortPosts(posts, sortSetting) {
+    switch (sortSetting) {
+      case 'dateAsc':
+        posts.sort((a, b) => (a.timestamp - b.timestamp));
+        break;
+      case 'dateDesc':
+        posts.sort((a, b) => (b.timestamp - a.timestamp));
+        break;
+      case 'votesAsc':
+        posts.sort((a, b) => (a.voteScore - b.voteScore));
+        break;
+      case 'votesDesc':
+        posts.sort((a, b) => (b.voteScore - a.voteScore));
+        break;
+      default:
+        break;
+    }
+  }
 
   composePosts() {
     // we perform a handful of operations on posts before they're
@@ -15,46 +39,18 @@ class PostList extends Component {
     const { items } = this.props.posts;
 
     // put the posts into an array
-    let posts = Object.keys(items).map(postID => {
-      return this.props.posts.items[postID];
-    })
+    let posts = Object.keys(items).map(postID => this.props.posts.items[postID]);
 
-    this.sortPosts(posts, this.props.sortSettings.sortSetting);
+    PostList.sortPosts(posts, this.props.sortSettings.sortSetting);
 
     // if a category is defined filter them to only that category
     if (this.props.category) {
       posts = posts.filter(post => post.category === this.props.category);
     }
 
-    return this.numberPosts(posts)
+    return PostList.numberPosts(posts);
   }
 
-  sortPosts(posts, sortSetting) {
-    switch (sortSetting) {
-      case 'dateAsc':
-        posts.sort((a, b) => (a.timestamp - b.timestamp))
-        return
-      case 'dateDesc':
-        posts.sort((a, b) => (b.timestamp - a.timestamp))
-        return
-      case 'votesAsc':
-        posts.sort((a, b) => (a.voteScore - b.voteScore))
-        return
-      case 'votesDesc':
-        posts.sort((a, b) => (b.voteScore - a.voteScore))
-        return
-      default:
-        return
-    }
-  }
-
-  numberPosts(posts) {
-    // add numbers to the posts
-    for (let i = 0; i < posts.length; i++) {
-      posts[i] = { ...posts[i], number: i + 1 };
-    }
-    return posts;
-  }
 
   render() {
     const posts = (Object.keys(this.props.posts.items).length > 0)
