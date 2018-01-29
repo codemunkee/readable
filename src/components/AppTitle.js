@@ -14,5 +14,5 @@ export default function AppTitle(props) {
         { props.name }
       </span>
     </div>
-  )
+  );
 }
