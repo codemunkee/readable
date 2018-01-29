@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import React from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
 import AppTitle from './AppTitle';
 import AppMenu from './AppMenu';
@@ -11,98 +11,116 @@ import PostSubmit from './PostSubmit';
 import PostEdit from './PostEdit';
 import CommentEdit from './CommentEdit';
 
-class App extends Component {
+function App() {
+  return (
+    <div className="App">
 
-  render() {
-    return (
-      <div className="App">
+      { /* The Main Landing Page */ }
 
-        { /* The Main Landing Page */ }
-
-        <Route path="/" exact render={() => (
+      <Route
+        path="/"
+        exact
+        render={() => (
           <div className="App-main">
             <header className="App-header">
-              <AppTitle name="Readable"/>
+              <AppTitle name="Readable" />
               <AppMenu />
               <CategoryLinks />
             </header>
             <div className="App-body">
-              <PostList/>
+              <PostList />
             </div>
           </div>
-        )} />
+        )}
+      />
 
-        { /* View a Post */ }
+      { /* View a Post */ }
 
-        <Route path="/post/:id" exact render={props => (
+      <Route
+        path="/post/:id"
+        exact
+        render={props => (
           <div className="App-main">
             <header className="App-header">
-              <AppTitle name="Readable"/>
+              <AppTitle name="Readable" />
             </header>
             <div className="App-body">
-              <PostView {...props}/>
+              <PostView {...props} />
             </div>
           </div>
-        )} />
+        )}
+      />
 
-        { /* View a Category of Posts */ }
+      { /* View a Category of Posts */ }
 
-        <Route path="/category/:id" render={props => (
+      <Route
+        path="/category/:id"
+        render={props => (
           <div className="App-main">
             <header className="App-header">
-              <AppTitle name="Readable"/>
+              <AppTitle name="Readable" />
               <AppMenu />
               <CategoryLinks />
             </header>
             <div className="App-body">
-              <CategoryView {...props}/>
+              <CategoryView {...props} />
             </div>
           </div>
-        )} />
+        )}
+      />
 
-        { /* Submit a New Post */ }
+      { /* Submit a New Post */ }
 
-        <Route path="/submit" exact render={() => (
+      <Route
+        path="/submit"
+        exact
+        render={() => (
           <div className="App-submit">
             <header className="App-header">
-              <AppTitle name="Submit"/>
+              <AppTitle name="Submit" />
             </header>
             <div className="App-body">
-              <PostSubmit/>
+              <PostSubmit />
             </div>
           </div>
-        )} />
+        )}
+      />
 
-        { /* Edit an existing Post */ }
+      { /* Edit an existing Post */ }
 
-        <Route path="/post/:id/edit" exact render={props => (
+      <Route
+        path="/post/:id/edit"
+        exact
+        render={props => (
           <div className="App-submit">
             <header className="App-header">
-              <AppTitle name="Edit Post"/>
+              <AppTitle name="Edit Post" />
             </header>
             <div className="App-body">
-              <PostEdit {...props}/>
+              <PostEdit {...props} />
             </div>
           </div>
-        )} />
+        )}
+      />
 
-        { /* Edit an existing Comment */ }
+      { /* Edit an existing Comment */ }
 
-        <Route path="/post/:postid/comment/:commentid/edit" exact render={props => (
+      <Route
+        path="/post/:postid/comment/:commentid/edit"
+        exact
+        render={props => (
           <div className="App-submit">
             <header className="App-header">
-              <AppTitle name="Edit Comment"/>
+              <AppTitle name="Edit Comment" />
             </header>
             <div className="App-body">
-              <CommentEdit {...props}/>
+              <CommentEdit {...props} />
             </div>
           </div>
-        )} />
-
-      </div>
-
-    );
-  }
+        )}
+      />
+    </div>
+  );
 }
 
 export default App;
