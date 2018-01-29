@@ -4,21 +4,22 @@ import { postComment, fetchPosts } from '../actions';
 import './CommentSubmit.css';
 
 class CommentSubmit extends Component {
-
   state = {
     body: '',
-    author: ''
+    author: '',
   };
 
-  handleChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addComment({'body': this.state.body,
-                           'author': this.state.author,
-                           'parentId': this.props.postID});
+    this.props.addComment({
+      body: this.state.body,
+      author: this.state.author,
+      parentId: this.props.postID,
+    });
     // we do this to update the comment count listed on posts
     // which is handled on the backend
     this.props.fetchPosts();
@@ -28,39 +29,47 @@ class CommentSubmit extends Component {
     return (
       <form className="CommentSubmit" onSubmit={this.handleSubmit} >
         <fieldset>
-
           <div className="CommentSubmit-text">
-            <textarea name="body"
-                      value={this.state.body}
-                      onChange={this.handleChange} />
-            <br/>
+            <textarea
+              name="body"
+              value={this.state.body}
+              onChange={this.handleChange}
+            />
           </div>
-          <label>author</label>
-          <input name="author"
-                 type="text"
-                 value={this.state.author}
-                 onChange={this.handleChange} />
-          <button className="CommentSubmit-button"
-                  type="submit" value="submit">add comment</button>
+          <label htmlFor="author">
+            <span>author</span>
+            <input
+              name="author"
+              type="text"
+              value={this.state.author}
+              onChange={this.handleChange}
+            />
+          </label>
+          <button
+            className="CommentSubmit-button"
+            type="submit"
+            value="submit"
+          >
+            add comment
+          </button>
         </fieldset>
       </form>
-    )
+    );
   }
 }
 
-function mapStateToProps (state) {
-
+function mapStateToProps(state) {
   return state;
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    addComment: (data) => dispatch(postComment(data)),
-    fetchPosts: () => dispatch(fetchPosts())
-  }
+    addComment: data => dispatch(postComment(data)),
+    fetchPosts: () => dispatch(fetchPosts()),
+  };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(CommentSubmit)
+  mapDispatchToProps,
+)(CommentSubmit);

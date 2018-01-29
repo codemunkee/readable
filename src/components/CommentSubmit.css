@@ -14,11 +14,15 @@
 }
 
 .CommentSubmit label {
-  display: inline-block;
+  display: inline-flex;
   margin-top: 10px;
   margin-right: 20px;
   font-size: 13px;
-  width: 30px;
+}
+
+.CommentSubmit span {
+  display: inline-block;
+  width: 55px;
 }
 
 .CommentSubmit-text {
@@ -32,5 +36,6 @@
 }
 
 .CommentSubmit button {
+  display: inline-flex;
   margin-left: 25px;
 }
