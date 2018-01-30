@@ -1,21 +1,37 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './CategoryLinks.css';
 
 function CategoryLinks(props) {
+  let activeCategory;
+  if (props.match) {
+    activeCategory = (props.match.params.id);
+  }
+
+  // add a property to indicate whether or not the category is currently open (active)
+  const categories = props.categories.items.map((item) => {
+    const category = Object.assign(item);
+    category.active = (category.name === activeCategory);
+    return category;
+  });
+
+  const activeStyle = {
+    color: 'white',
+  };
+
   return (
     <div className="CategoryLinks">
-      { props.categories.items.map(item =>
-        (
-          <Link
-            key={item.name}
-            to={`/category/${item.path}`}
-          >
-            { ` | ${item.name}` }
-          </Link>))
+      { categories.map(category => (
+        <div className="CategoryLinks-link">
+          <span> | </span>
+          { category.active && <Link to={`/category/${category.name}`} style={activeStyle}>{category.name}</Link> }
+          { !category.active && <Link to={`/category/${category.name}`}>{category.name}</Link> }
+          &nbsp;
+        </div>))
       }
-    </div>);
+    </div>
+  );
 }
 
 function mapStateToProps({ categories }) {

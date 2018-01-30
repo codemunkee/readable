@@ -60,7 +60,7 @@ function App() {
             <header className="App-header">
               <AppTitle name="Readable" />
               <AppMenu />
-              <CategoryLinks />
+              <CategoryLinks {...props} />
             </header>
             <div className="App-body">
               <CategoryView {...props} />

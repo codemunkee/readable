@@ -4,3 +4,7 @@
   margin-bottom: 12px;
   vertical-align: middle;
 }
+
+.CategoryLinks-link {
+  display: inline-block;
+}
