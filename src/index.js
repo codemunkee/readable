@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fetchPosts, fetchCategories } from './actions';
 import registerServiceWorker from './registerServiceWorker';
-import App from './components/App';
+import App from './components/App/';
 import reducer from './reducers';
 import './index.css';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PostInfo from './PostInfo';
-import { fetchPosts } from '../actions';
+import PostInfo from '../PostInfo/';
+import { fetchPosts } from '../../actions';
 import './PostList.css';
 
 

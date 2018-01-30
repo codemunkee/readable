@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import AppTitle from './AppTitle';
-import AppMenu from './AppMenu';
-import CategoryLinks from './CategoryLinks';
-import CategoryView from './CategoryView';
-import PostList from './PostList';
-import PostView from './PostView';
-import PostSubmit from './PostSubmit';
-import PostEdit from './PostEdit';
-import CommentEdit from './CommentEdit';
+import AppTitle from '../AppTitle/';
+import AppMenu from '../AppMenu/';
+import CategoryLinks from '../CategoryLinks/';
+import CategoryView from '../CategoryView/';
+import PostList from '../PostList/';
+import PostView from '../PostView/';
+import PostSubmit from '../PostSubmit/';
+import PostEdit from '../PostEdit/';
+import CommentEdit from '../CommentEdit/';
 
 function App() {
   return (

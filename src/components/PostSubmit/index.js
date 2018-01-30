@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { postPost } from '../actions';
+import { postPost } from '../../actions';
 import './PostSubmit.css';
 
 class PostSubmit extends Component {

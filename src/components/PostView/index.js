@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import IconArrowUp from './IconArrowUp.svg';
-import IconArrowDown from './IconArrowDown.svg';
-import CommentSubmit from './CommentSubmit';
-import CommentList from './CommentList';
-import { incrementPostVotes, decrementPostVotes, deletePost } from '../actions';
+import IconArrowUp from '../IconArrows/IconArrowUp.svg';
+import IconArrowDown from '../IconArrows/IconArrowDown.svg';
+import CommentSubmit from '../CommentSubmit/';
+import CommentList from '../CommentList/';
+import { incrementPostVotes, decrementPostVotes, deletePost } from '../../actions';
 import './PostView.css';
 
 function PostView(props) {

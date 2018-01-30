@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postComment, fetchPosts } from '../actions';
+import { postComment, fetchPosts } from '../../actions';
 import './CommentSubmit.css';
 
 class CommentSubmit extends Component {

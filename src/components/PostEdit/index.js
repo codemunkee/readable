@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { putPost, fetchPosts } from '../actions';
+import { putPost, fetchPosts } from '../../actions';
 import './PostEdit.css';
 
 class PostEdit extends Component {

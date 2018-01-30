@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import IconArrowUp from './IconArrowUp.svg';
-import IconArrowDown from './IconArrowDown.svg';
-import { updateSort } from '../actions';
+import IconArrowUp from '../IconArrows/IconArrowUp.svg';
+import IconArrowDown from '../IconArrows/IconArrowDown.svg';
+import { updateSort } from '../../actions';
 import './AppMenu.css';
 
 class AppMenu extends Component {

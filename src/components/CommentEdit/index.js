@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { putComment, fetchComments } from '../actions';
+import { putComment, fetchComments } from '../../actions';
 import './CommentEdit.css';
 
 class CommentEdit extends Component {

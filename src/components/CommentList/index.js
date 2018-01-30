@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../actions';
-import IconArrowUp from './IconArrowUp.svg';
-import IconArrowDown from './IconArrowDown.svg';
+import { fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../../actions';
+import IconArrowUp from '../IconArrows/IconArrowUp.svg';
+import IconArrowDown from '../IconArrows/IconArrowDown.svg';
 import './CommentList.css';
 
 class CommentList extends Component {
