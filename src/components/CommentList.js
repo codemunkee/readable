@@ -22,8 +22,11 @@ class CommentList extends Component {
   }
 
   render() {
-    const comments = Object.keys(this.props.comments.items).map(commentID =>
-      this.props.comments.items[commentID]);
+    const comments = Object.keys(this.props.comments.items).map((commentID) => {
+      const comment = this.props.comments.items[commentID];
+      comment.humantime = new Date(comment.timestamp).toLocaleString('en-US');
+      return comment;
+    });
     return (
       <div>
         { this.props.isFetching &&
@@ -51,7 +54,7 @@ class CommentList extends Component {
                 <a role="button" onClick={() => this.handleVote(comment.id, 'decrement')}>
                   <img src={IconArrowDown} alt="arrow down" />
                 </a>
-                {comment.voteScore} votes by {comment.author} {comment.timestamp}|&nbsp;
+                {comment.voteScore} votes by {comment.author} {comment.humantime} |&nbsp;
                 <Link to={`/post/${this.props.postID}/comment/${comment.id}/edit`}>edit</Link>
                 &nbsp;|&nbsp;
                 <a role="button" onClick={() => this.props.removeComment(comment.id)}>remove</a>
