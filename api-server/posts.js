@@ -15,7 +15,7 @@ const defaultData = {
     category: 'react',
     voteScore: 6,
     deleted: false,
-    commentCount: 2
+    commentCount: 1
   },
   [id2]: {
     id: id2,
@@ -26,7 +26,7 @@ const defaultData = {
     category: 'redux',
     voteScore: -5,
     deleted: false,
-    commentCount: 0
+    commentCount: 1
   }
 }
 
