@@ -23,10 +23,10 @@ function CategoryLinks(props) {
   return (
     <div className="CategoryLinks">
       { categories.map(category => (
-        <div className="CategoryLinks-link">
+        <div className="CategoryLinks-link" key={category.name}>
           <span> | </span>
-          { category.active && <Link to={`/category/${category.name}`} style={activeStyle}>{category.name}</Link> }
-          { !category.active && <Link to={`/category/${category.name}`}>{category.name}</Link> }
+          { category.active && <Link to={`/${category.name}/`} style={activeStyle}>{category.name}</Link> }
+          { !category.active && <Link to={`/${category.name}/`}>{category.name}</Link> }
           &nbsp;
         </div>))
       }

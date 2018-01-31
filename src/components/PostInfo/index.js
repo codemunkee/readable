@@ -26,6 +26,7 @@ class PostInfo extends Component {
       number,
       title,
       author,
+      category,
       timestamp,
       voteScore,
       commentCount,
@@ -39,12 +40,12 @@ class PostInfo extends Component {
             <img src={IconArrowDown} className="PostInfo-logo" alt="arrow down" onClick={this.handleDownVote} />
           </span>
           <span>
-            <Link to={`/post/${id}`}>{title}</Link>
+            <Link to={`/${category}/${id}`}>{title}</Link>
           </span>
         </div>
         <div className="PostInfo-line-two">
           <span>{voteScore} votes | {commentCount} comments | by {author} {humanTime} |&nbsp;
-            <Link to={`/post/${id}/edit`}>edit</Link>
+            <Link to={`/${category}/${id}/edit`}>edit</Link>
              &nbsp;|&nbsp;
             <a role="button" onClick={this.handleRemove}>remove</a>
           </span>

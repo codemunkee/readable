@@ -37,7 +37,7 @@ function App() {
       { /* View a Post */ }
 
       <Route
-        path="/post/:id"
+        path="/:category/:id"
         exact
         render={props => (
           <div className="App-main">
@@ -54,7 +54,8 @@ function App() {
       { /* View a Category of Posts */ }
 
       <Route
-        path="/category/:id"
+        path="/:category(react|redux|udacity)/"
+        exact
         render={props => (
           <div className="App-main">
             <header className="App-header">
@@ -89,7 +90,7 @@ function App() {
       { /* Edit an existing Post */ }
 
       <Route
-        path="/post/:id/edit"
+        path="/:category/:id/edit"
         exact
         render={props => (
           <div className="App-submit">
@@ -106,7 +107,7 @@ function App() {
       { /* Edit an existing Comment */ }
 
       <Route
-        path="/post/:postid/comment/:commentid/edit"
+        path="/:category/:postid/comment/:commentid/edit"
         exact
         render={props => (
           <div className="App-submit">
