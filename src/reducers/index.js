@@ -4,7 +4,7 @@ import comments from './commentReducers';
 import posts from './postReducers';
 import {
   UPDATE_SORT,
-} from '../actions';
+} from '../actions/types';
 
 /* eslint no-param-reassign: 0 */
 /* eslint no-case-declarations: 0 */

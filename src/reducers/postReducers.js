@@ -9,7 +9,7 @@ import {
   REMOVE_POST,
   UP_VOTE_POST,
   DOWN_VOTE_POST,
-} from '../actions';
+} from '../actions/types';
 
 /* eslint no-param-reassign: 0 */
 /* eslint no-case-declarations: 0 */

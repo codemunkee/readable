@@ -9,7 +9,7 @@ import {
   REMOVE_COMMENT,
   UP_VOTE_COMMENT,
   DOWN_VOTE_COMMENT,
-} from '../actions';
+} from '../actions/types';
 
 /* eslint no-param-reassign: 0 */
 /* eslint no-case-declarations: 0 */

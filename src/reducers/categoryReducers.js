@@ -1,7 +1,7 @@
 import {
   FETCH_CATEGORIES,
   RECEIVE_CATEGORIES,
-} from '../actions';
+} from '../actions/types';
 
 /* eslint no-param-reassign: 0 */
 /* eslint no-case-declarations: 0 */
