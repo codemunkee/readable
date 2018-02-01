@@ -45,7 +45,7 @@ function PostView(props) {
             </span>
             <div className="PostView-subtitle">
               <span>{post.voteScore} votes by {post.author} {humanTime}</span>
-              <Link to={`/post/${postID}/edit`}> edit</Link>
+              <Link to={`/${post.category}/${postID}/edit`}> edit</Link>
                &nbsp;|&nbsp;
               <button
                 className="PostView-button"
