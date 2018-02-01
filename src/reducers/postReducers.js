@@ -1,6 +1,3 @@
-import { combineReducers } from 'redux';
-import categories from './categoryReducers';
-import comments from './commentReducers';
 import {
   POST_POST,
   ADD_POST,
@@ -12,15 +9,6 @@ import {
   REMOVE_POST,
   UP_VOTE_POST,
   DOWN_VOTE_POST,
-  FETCH_COMMENTS,
-  RECEIVE_COMMENTS,
-  POST_COMMENT,
-  ADD_COMMENT,
-  DELETE_COMMENT,
-  REMOVE_COMMENT,
-  UP_VOTE_COMMENT,
-  DOWN_VOTE_COMMENT,
-  UPDATE_SORT,
 } from '../actions';
 
 /* eslint no-param-reassign: 0 */
@@ -37,7 +25,7 @@ const initPostsState = {
   items: {},
 };
 
-function posts(state = initPostsState, action) {
+export default function posts(state = initPostsState, action) {
   const { id } = action;
 
   switch (action.type) {
@@ -120,25 +108,3 @@ function posts(state = initPostsState, action) {
       return state;
   }
 }
-
-// SORT STYLE
-
-const initSortState = { sortSetting: 'dateDesc' };
-
-function sortSettings(state = initSortState, action) {
-  switch (action.type) {
-    case UPDATE_SORT:
-      return {
-        sortSetting: action.sortType,
-      };
-    default:
-      return state;
-  }
-}
-
-export default combineReducers({
-  posts,
-  categories,
-  comments,
-  sortSettings,
-});
