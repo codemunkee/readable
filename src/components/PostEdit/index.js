@@ -109,7 +109,7 @@ class PostEdit extends Component {
             </form>
             {this.state.fireRedirect && (
               <Redirect
-                to={`/post/${post.id}`}
+                to={`/${post.category}/${post.id}`}
               />
             )}
           </div>
