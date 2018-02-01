@@ -35,3 +35,8 @@
 .PostSubmit-button {
   margin-left: 80px;
 }
+
+.PostSubmit strong {
+  margin-left: 10px;
+  color: red;
+}

@@ -6,7 +6,7 @@ import './CategoryLinks.css';
 function CategoryLinks(props) {
   let activeCategory;
   if (props.match) {
-    activeCategory = (props.match.params.id);
+    activeCategory = (props.match.params.category);
   }
 
   // add a property to indicate whether or not the category is currently open (active)

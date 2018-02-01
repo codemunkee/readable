@@ -11,14 +11,22 @@ class PostSubmit extends Component {
     category: '',
     author: '',
     fireRedirect: false,
+    categoryMissed: false,
   };
 
   handleChange = (event) => {
+    if (event.target.name === 'category') {
+      this.setState({ categoryMissed: false });
+    }
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if (!this.state.category) {
+      this.setState({ categoryMissed: true });
+      return;
+    }
     this.props.addPost({
       title: this.state.title,
       category: this.state.category,
@@ -48,6 +56,7 @@ class PostSubmit extends Component {
             <label htmlFor="category">
               <span>category</span>
               <select name="category" onChange={this.handleChange}>
+                <option>Select Category</option>
                 { this.props.categories.map(category => (
                   <option
                     key={category.name}
@@ -57,6 +66,7 @@ class PostSubmit extends Component {
                   </option>))
                 }
               </select>
+              { this.state.categoryMissed && <strong>please select a category</strong> }
             </label>
 
             <div className="PostSubmit-text">
