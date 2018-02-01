@@ -18,7 +18,7 @@ class AppMenu extends Component {
         <li><Link to="/submit">submit</Link></li>
         &nbsp;|&nbsp;
         <li>
-          <a role="button" onClick={this.handleSort}>sort
+          <a role="button">sort
             <ul>
               <li>date
                 <div className="AppMenu-arrow-box">
