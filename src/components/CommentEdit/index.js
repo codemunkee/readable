@@ -73,7 +73,7 @@ class CommentEdit extends Component {
                 Edit Comment
               </button>
             </form>
-            { this.state.fireRedirect && <Redirect to={`/post/${parentPost.id}`} />}
+            { this.state.fireRedirect && <Redirect to={`/${parentPost.category}/${parentPost.id}`} />}
           </div>
         }
       </div>
