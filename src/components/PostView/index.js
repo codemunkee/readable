@@ -62,7 +62,11 @@ function PostView(props) {
           </div>
           <div>
             <hr />
-            <CommentList postID={postID} commentCount={post.commentCount} />
+            <CommentList
+              postID={postID}
+              postCategory={post.category}
+              commentCount={post.commentCount}
+            />
           </div>
         </div>
       }

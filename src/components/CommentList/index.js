@@ -32,6 +32,7 @@ class CommentList extends Component {
       comment.humantime = new Date(comment.timestamp).toLocaleString('en-US');
       return comment;
     });
+    const { postCategory, postID, commentCount } = this.props;
     return (
       <div>
         { this.props.isFetching &&
@@ -49,7 +50,7 @@ class CommentList extends Component {
 
         { (comments.length > 0) &&
         <div className="CommentList">
-          <h2>Comments ({this.props.commentCount})</h2>
+          <h2>Comments ({commentCount})</h2>
           { comments.map(comment => (
             <section key={comment.id}>
               <div className="CommentList-comment-heading">
@@ -60,7 +61,7 @@ class CommentList extends Component {
                   <img src={IconArrowDown} alt="arrow down" />
                 </a>
                 {comment.voteScore} votes by {comment.author} {comment.humantime} |&nbsp;
-                <Link to={`/post/${this.props.postID}/comment/${comment.id}/edit`}>edit</Link>
+                <Link to={`/${postCategory}/${postID}/comment/${comment.id}/edit`}>edit</Link>
                 &nbsp;|&nbsp;
                 <a role="button" onClick={() => this.handleDelete(comment.id)}>remove</a>
               </div>
