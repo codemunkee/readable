@@ -62,7 +62,7 @@ function PostView(props) {
           </div>
           <div>
             <hr />
-            <CommentList postID={postID} />
+            <CommentList postID={postID} commentCount={post.commentCount} />
           </div>
         </div>
       }

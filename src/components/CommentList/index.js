@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../../actions';
+import { fetchPosts, fetchComments, deleteComment, incrementCommentVotes, decrementCommentVotes } from '../../actions';
 import IconArrowUp from '../IconArrows/IconArrowUp.svg';
 import IconArrowDown from '../IconArrows/IconArrowDown.svg';
 import './CommentList.css';
@@ -9,6 +9,11 @@ import './CommentList.css';
 class CommentList extends Component {
   componentDidMount() {
     this.props.fetchComments(this.props.postID);
+  }
+
+  handleDelete(commentID) {
+    this.props.removeComment(commentID);
+    this.props.fetchPosts();
   }
 
   handleVote(commentID, voteType) {
@@ -44,7 +49,7 @@ class CommentList extends Component {
 
         { (comments.length > 0) &&
         <div className="CommentList">
-          <h2>Comments</h2>
+          <h2>Comments ({this.props.commentCount})</h2>
           { comments.map(comment => (
             <section key={comment.id}>
               <div className="CommentList-comment-heading">
@@ -57,7 +62,7 @@ class CommentList extends Component {
                 {comment.voteScore} votes by {comment.author} {comment.humantime} |&nbsp;
                 <Link to={`/post/${this.props.postID}/comment/${comment.id}/edit`}>edit</Link>
                 &nbsp;|&nbsp;
-                <a role="button" onClick={() => this.props.removeComment(comment.id)}>remove</a>
+                <a role="button" onClick={() => this.handleDelete(comment.id)}>remove</a>
               </div>
               <p>{comment.body}</p>
             </section>))
@@ -75,6 +80,7 @@ function mapDispatchToProps(dispatch) {
     downVote: commentID => dispatch(decrementCommentVotes(commentID)),
     fetchComments: postID => dispatch(fetchComments(postID)),
     removeComment: commentID => dispatch(deleteComment(commentID)),
+    fetchPosts: () => dispatch(fetchPosts()),
   };
 }
 
