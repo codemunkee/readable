@@ -29,7 +29,7 @@ class CommentEdit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.editComment({
+    this.props.putComment({
       id: this.state.id,
       body: this.state.body,
     });
@@ -81,18 +81,11 @@ class CommentEdit extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state;
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    editComment: data => dispatch(putComment(data)),
-    fetchComments: postID => dispatch(fetchComments(postID)),
-  };
+function mapStateToProps({ comments, posts }) {
+  return { comments, posts };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { putComment, fetchComments },
 )(CommentEdit);
