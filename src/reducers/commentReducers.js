@@ -3,6 +3,8 @@ import {
   RECEIVE_COMMENTS,
   POST_COMMENT,
   ADD_COMMENT,
+  PUT_COMMENT,
+  EDIT_COMMENT,
   DELETE_COMMENT,
   REMOVE_COMMENT,
   UP_VOTE_COMMENT,
@@ -31,6 +33,22 @@ export default function comments(state = initCommentsState, action) {
         postingComment: true,
       };
     case ADD_COMMENT:
+      return {
+        ...state,
+        postingComment: false,
+        items: {
+          ...state.items,
+          [action.comment.id]: {
+            ...action.comment,
+          },
+        },
+      };
+    case PUT_COMMENT:
+      return {
+        ...state,
+        postingComment: true,
+      };
+    case EDIT_COMMENT:
       return {
         ...state,
         postingComment: false,
